@@ -29,7 +29,6 @@ Without these `yarn:build` command will fail. To get your API Key head to [dashb
 
 ## Repository structure
 
-- `chains` - Helper packages for managed chain workflows
 - `examples` - Contains examples for all suported use cases, acts as testing ground
 - `packages`
   - `core` - State and Config
