@@ -50,6 +50,9 @@
     "rollup-plugin-lit-css": "4.0.1"
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/ui",
+    "packages/html",
+    "examples/html"
   ]
 }
