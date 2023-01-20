@@ -1,0 +1,25 @@
+{
+  "name": "@lazerpay-checkout/ui",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LazerPay-Finance/checkout-v2.git"
+  },
+  "keywords": [
+    "crypto",
+    "web3",
+    "Lazerpay",
+    "Checkout"
+  ],
+  "author": "Njoku Emmanuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LazerPay-Finance/checkout-v2/issues"
+  },
+  "homepage": "https://github.com/LazerPay-Finance/checkout-v2#readme"
+}
