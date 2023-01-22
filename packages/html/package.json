@@ -3,8 +3,17 @@
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:clean": "rm -rf dist",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:source": "rollup --silent --config rollup.config.js",
+    "build": "npm run build:clean; npm run build:types & npm run build:source",
+    "dev": "rollup --config rollup.config.js --watch",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
