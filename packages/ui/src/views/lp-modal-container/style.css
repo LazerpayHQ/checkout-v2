@@ -1,0 +1,26 @@
+:host {
+  all: initial;
+}
+
+.lp-overlay {
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lp-container {
+    max-width: 680px;
+    min-height: 500px;
+    width: 680px;
+    color: white;
+    left: 0px;
+    top: 14px;
+       overflow-y: auto;
+        overflow-x: hidden;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.11);
+    border-radius: 4px;
+}
