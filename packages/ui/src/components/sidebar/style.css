@@ -1,0 +1,9 @@
+.lp-sidebar {
+    display: flex;
+    padding: 20px;
+width: 180px;
+height: 500px;
+background: #F8FAFC;
+box-shadow: 1px 0px 4px #E2E8F0;
+border-radius: 4px 0px 0px 4px;
+}
