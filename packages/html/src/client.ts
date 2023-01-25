@@ -1,3 +1,4 @@
+import { ModalCtrl } from '@lazerpay-checkout/core'
 export class LazerpayCheckout {
   /**
    * TODO: Should accept API Key as parameter
@@ -14,4 +15,10 @@ export class LazerpayCheckout {
       document.body.insertAdjacentElement('beforeend', modal)
     }
   }
+
+  public openModal = ModalCtrl.open
+
+  public closeModal = ModalCtrl.close
+
+  public subscribeModal = ModalCtrl.subscribe
 }

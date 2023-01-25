@@ -24,3 +24,7 @@
     border-radius: 4px;
     padding: 10px;
 }
+
+.lp-open {
+  pointer-events: auto;
+}
