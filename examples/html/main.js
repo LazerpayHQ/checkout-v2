@@ -1,5 +1,7 @@
 import { LazerpayCheckout } from '@lazerpay-checkout/html'
 
-// Const paymentButton = document.getElementById('payment-button')
+const paymentButton = document.getElementById('payment-button')
 
-export const lazerpayCheckout = new LazerpayCheckout()
+paymentButton.addEventListener('click', () => {
+  const lazerpayCheckout = new LazerpayCheckout()
+})

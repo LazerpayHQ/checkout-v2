@@ -19,4 +19,6 @@ export class LazerpayCheckout {
   public openModal = ModalCtrl.open
 
   public closeModal = ModalCtrl.close
+
+  public subscribeModal = ModalCtrl.subscribe
 }
