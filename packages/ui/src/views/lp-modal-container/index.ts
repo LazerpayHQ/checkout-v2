@@ -1,6 +1,5 @@
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
-import { ModalCtrl } from '@lazerpay-checkout/core'
 import { classMap } from 'lit/directives/class-map.js'
 import { UiUtil } from '../../utils/UiUtil'
 import styles from './style.css'
@@ -15,23 +14,14 @@ export class LazerpayModalContainer extends LitElement {
   // -- lifecycle ------------------------------------------- //
   public constructor() {
     super()
-    this.unsubscribeModal = ModalCtrl.subscribe((modalState) => {
-      if (modalState.open) {
-        this.onOpenModalEvent()
-      } else {
-        this.onCloseModalEvent()
-      }
-    })
+    this.open = true
   }
 
   private onCloseModal(event: PointerEvent) {
     if (event.target === event.currentTarget) {
-      ModalCtrl.close()
+      this.open = false
     }
   }
-
-  // -- private ------------------------------------------------------ //
-  private readonly unsubscribeModal?: () => void = undefined
 
   private get overlayEl() {
     return UiUtil.getShadowRootElement(this, '.lp-overlay')
@@ -39,13 +29,6 @@ export class LazerpayModalContainer extends LitElement {
 
   private get containerEl() {
     return UiUtil.getShadowRootElement(this, '.lp-container')
-  }
-  private onOpenModalEvent() {
-    this.open = true
-  }
-
-  private onCloseModalEvent() {
-    this.open = false
   }
 
   // -- render ------------------------------------------------------- //
@@ -56,7 +39,13 @@ export class LazerpayModalContainer extends LitElement {
     }
 
     return html`
-      <div id="lp-modal-container" class=${classMap(classes)} role="alertdialog" aria-modal="true">
+      <div
+        id="lp-modal-container"
+        @click=${this.onCloseModal}
+        class=${classMap(classes)}
+        role="alertdialog"
+        aria-modal="true"
+      >
         <div class="lp-container">
           ${this.open
             ? html`

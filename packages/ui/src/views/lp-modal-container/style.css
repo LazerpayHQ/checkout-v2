@@ -1,6 +1,7 @@
 
 .lp-overlay {
-  display: flex;
+  display: none;
+  z-index: 1;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -27,4 +28,5 @@
 
 .lp-open {
   pointer-events: auto;
+  display: flex;
 }
