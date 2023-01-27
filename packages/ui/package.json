@@ -11,7 +11,7 @@
     "build:clean": "rm -rf dist",
     "build:types": "tsc --emitDeclarationOnly",
     "build:source": "rollup --silent --config rollup.config.js",
-    "build": "npm run build:clean; npm run build:types & npm run build:source",
+    "build": "npm run build:clean; npm run build:types & npm run build:source npm run build:css",
     "dev": "rollup --config rollup.config.js --watch",
     "typecheck": "tsc --noEmit"
   },

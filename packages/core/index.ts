@@ -1,1 +1,1 @@
-export { ModalCtrl } from './src/controllers/ModalCtrl'
+export { ApiCtrl } from './src/controllers/ApiCtrl'
