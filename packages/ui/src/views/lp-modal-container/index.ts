@@ -21,7 +21,7 @@ export class LazerpayModalContainer extends LitElement {
     if (event.target === event.currentTarget) {
       this.open = false
     }
-    const wallets = await WalletConnectCtrl.getRecomendedWallets()
+    const wallets = await WalletConnectCtrl.getPaginatedWallets({ entries: 20 })
     console.log(wallets)
   }
 
