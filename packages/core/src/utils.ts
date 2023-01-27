@@ -2,7 +2,9 @@ import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 import type { WalletConnectProviderOpts } from './types/ControllerTypes'
 import type { ListingResponse, PageParams } from '../types/controllerTypes'
 
-const EXPLORER_API = 'https://explorer-api.walletconnect.com'
+// -- constants ------------------------------------------------------- //
+export const NAMESPACE = 'eip155'
+export const EXPLORER_API = 'https://explorer-api.walletconnect.com'
 
 // -- providers ------------------------------------------------------- //
 export function walletConnectProvider({ projectId }: WalletConnectProviderOpts) {
