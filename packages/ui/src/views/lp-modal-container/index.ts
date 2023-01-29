@@ -43,8 +43,9 @@ export class LazerpayModalContainer extends LitElement {
         <div class="lp-container">
           ${this.open
             ? html`
-                <lp-checkout-sidebar />
-                <div class="text-3xl font-bold">Njoku is a boy</div>
+                <lp-checkout-sidebar>
+                  <div class="text-3xl font-bold">Njoku is a boy</div>
+                </lp-checkout-sidebar>
               `
             : null}
         </div>

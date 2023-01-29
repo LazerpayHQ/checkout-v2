@@ -1,0 +1,1 @@
+import './lp-checkout-sidebar'
