@@ -40,15 +40,7 @@ export class LazerpayModalContainer extends LitElement {
         role="alertdialog"
         aria-modal="true"
       >
-        <div class="lp-container">
-          ${this.open
-            ? html`
-                <lp-checkout-sidebar>
-                  <div class="text-3xl font-bold">Njoku is a boy</div>
-                </lp-checkout-sidebar>
-              `
-            : null}
-        </div>
+        <div class="lp-container">${this.open ? html` <lp-checkout-sidebar> </lp-checkout-sidebar> ` : null}</div>
       </div>
     `
   }

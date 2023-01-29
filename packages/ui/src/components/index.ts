@@ -1,1 +1,1 @@
-import './lp-checkout-sidebar'
+import './sidebar'
