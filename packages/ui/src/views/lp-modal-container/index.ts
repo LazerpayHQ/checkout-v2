@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
-import { UiUtil } from '../../utils/UiUtil'
+import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 import styles from './style.css'
 
 @customElement('lp-modal-container')
@@ -17,18 +17,12 @@ export class LazerpayModalContainer extends LitElement {
     this.open = true
   }
 
-  private onCloseModal(event: PointerEvent) {
+  private async onCloseModal(event: PointerEvent) {
     if (event.target === event.currentTarget) {
       this.open = false
     }
-  }
-
-  private get overlayEl() {
-    return UiUtil.getShadowRootElement(this, '.lp-overlay')
-  }
-
-  private get containerEl() {
-    return UiUtil.getShadowRootElement(this, '.lp-container')
+    const wallets = await WalletConnectCtrl.getPaginatedWallets({ entries: 20 })
+    console.log(wallets)
   }
 
   // -- render ------------------------------------------------------- //
@@ -46,14 +40,7 @@ export class LazerpayModalContainer extends LitElement {
         role="alertdialog"
         aria-modal="true"
       >
-        <div class="lp-container">
-          ${this.open
-            ? html`
-                <lp-checkout-sidebar />
-                <div class="text-3xl font-bold">Njoku is a boy</div>
-              `
-            : null}
-        </div>
+        <div class="lp-container">${this.open ? html` <lp-checkout-sidebar> </lp-checkout-sidebar> ` : null}</div>
       </div>
     `
   }
