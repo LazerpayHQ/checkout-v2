@@ -10,6 +10,7 @@ export class LazerpayModalContainer extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() private open = false
+  @state() private activeTab = 3
 
   // -- lifecycle ------------------------------------------- //
   public constructor() {
@@ -40,7 +41,12 @@ export class LazerpayModalContainer extends LitElement {
         role="alertdialog"
         aria-modal="true"
       >
-        <div class="lp-container">${this.open ? html` <lp-checkout-sidebar> </lp-checkout-sidebar> ` : null}</div>
+        <div class="lp-container">
+          ${this.open ? html` <lp-checkout-sidebar> </lp-checkout-sidebar> ` : null}
+          <div>
+            <lp-checkout-header> </lp-checkout-header>
+          </div>
+        </div>
       </div>
     `
   }
