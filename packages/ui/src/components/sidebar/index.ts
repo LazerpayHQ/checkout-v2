@@ -2,7 +2,10 @@ import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import styles from './style.css'
 import 'lit-icon'
+import { classMap } from 'lit/directives/class-map.js'
 
+// I WILL NEED TO REFACTOR THIS LATER. THIS IS JUST A QUICK FIX
+// IT THROWS AN ERROR WHEN I TRY TO DYNAICALLY RENDER FILL
 const icon = (active: boolean, index: number) => {
   if (index === 0) {
     if (active) {
@@ -128,6 +131,12 @@ export class LazerpayCheckoutSideBar extends LitElement {
 
   // -- render ------------------------------------------------------- //
   protected render() {
+    const classes = (active: boolean) => {
+      return {
+        'lp-sidebar__active': active,
+        'lp-sidebar__inactive': !active,
+      }
+    }
     return html`
       <div class="lp-sidebar">
         <div class="lp-sidebar__header">
@@ -136,9 +145,7 @@ export class LazerpayCheckoutSideBar extends LitElement {
         <div class="lp-sidebar__content">
           ${this.tabs.map(
             (tab, index) => html`<div
-              class="lp-sidebar__content-inner ${index === this.activeTab
-                ? `lp-sidebar__active`
-                : `lp-sidebar__inactive`}"
+              class="lp-sidebar__content-inner ${classMap(classes(index === this.activeTab))}"
               @click=${() => (this.activeTab = index)}
             >
               <div class="lp-sidebar__tab__icon">${icon(index === this.activeTab, index)}</div>
