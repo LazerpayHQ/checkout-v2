@@ -1,5 +1,6 @@
+/* eslint-disable func-style */
 import { html, LitElement } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
 import 'lit-icon'
 import { classMap } from 'lit/directives/class-map.js'
@@ -9,7 +10,7 @@ export class LazerpayCheckoutHeader extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @state() private activeStep = 1
+  @property() public activeStep
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -19,6 +20,7 @@ export class LazerpayCheckoutHeader extends LitElement {
         'lp-header__inactive': !active,
       }
     }
+
     return html`
       <div class="lp-header">
         <div class="lp-header__wrapper">
