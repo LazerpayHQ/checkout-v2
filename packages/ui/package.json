@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "@lazerpay-checkout/core": "2.0.0",
-    "lit": "2.6.1"
+    "lit": "2.6.1",
+    "lit-icon": "^1.0.1"
   },
   "keywords": [
     "crypto",
