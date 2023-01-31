@@ -45,6 +45,7 @@ export class LazerpayModalContainer extends LitElement {
           ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab}> </lp-checkout-sidebar> ` : null}
           <div>
             <lp-checkout-header .activeStep=${this.activeTab}> </lp-checkout-header>
+            <lp-checkout-content .activeTab=${this.activeTab}> </lp-checkout-content>
           </div>
         </div>
       </div>

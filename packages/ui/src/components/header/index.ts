@@ -10,7 +10,7 @@ export class LazerpayCheckoutHeader extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public activeStep
+  @property() public activeStep: number | undefined
 
   // -- render ------------------------------------------------------- //
   protected render() {

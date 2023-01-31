@@ -1,3 +1,6 @@
 import './sidebar'
 import './header'
 import './content'
+import './steps'
+import './transfer-flow'
+import './box'

@@ -24,8 +24,8 @@ const icon = (active: boolean, index: number) => {
   return SvgUtil.WALLET_ICON
 }
 
-@customElement('lp-checkout-sidebar')
-export class LazerpayCheckoutSideBar extends LitElement {
+@customElement('lp-checkout-step')
+export class LazerpayCheckoutStep extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
@@ -73,6 +73,6 @@ export class LazerpayCheckoutSideBar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lp-checkout-sidebar': LazerpayCheckoutSideBar
+    'lp-checkout-step': LazerpayCheckoutStep
   }
 }
