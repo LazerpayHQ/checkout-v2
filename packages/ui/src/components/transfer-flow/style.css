@@ -19,3 +19,9 @@
   gap: 12px;
   margin-top: 24px;
 }
+
+@media screen and (max-width: 680px) {
+  .lp-transfer__box-wrapper {
+    /* width: 100%; */
+  }
+}
