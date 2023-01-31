@@ -12,16 +12,16 @@ import { classMap } from 'lit/directives/class-map.js'
 const icon = (active: boolean, index: number) => {
   if (index === 0) {
     if (active) {
-      return html` ${SvgUtil.TRANSFER_ICON_COLORED} `
+      return SvgUtil.TRANSFER_ICON_COLORED
     }
 
-    return html` ${SvgUtil.TRANSFER_ICON} `
+    return SvgUtil.TRANSFER_ICON
   }
   if (active) {
-    return html` ${SvgUtil.WALLET_ICON_COLORED} `
+    return SvgUtil.WALLET_ICON_COLORED
   }
 
-  return html` ${SvgUtil.WALLET_ICON} `
+  return SvgUtil.WALLET_ICON
 }
 
 @customElement('lp-checkout-sidebar')

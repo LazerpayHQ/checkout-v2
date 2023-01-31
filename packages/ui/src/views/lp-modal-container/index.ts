@@ -10,7 +10,7 @@ export class LazerpayModalContainer extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() private open = false
-  @state() public activeTab = 3
+  @state() public activeTab = 1
 
   // -- lifecycle ------------------------------------------- //
   public constructor() {
