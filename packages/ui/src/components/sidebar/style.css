@@ -34,19 +34,20 @@
   font-size: 15px;
   line-height: 135%;
   cursor: pointer;
+  align-items: center;
 }
 
 .lp-sidebar__inactive {
   color: #475569;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .lp-sidebar__active {
   background: #e9f2ff;
   color: #125bc9;
   font-weight: 700;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 680px) {
