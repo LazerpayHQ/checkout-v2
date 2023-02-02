@@ -1,6 +1,7 @@
 import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 import type { WalletConnectProviderOpts } from './types/ControllerTypes'
 import type { ListingResponse, PageParams } from '../types/controllerTypes'
+import SignClient from '@walletconnect/sign-client'
 
 // -- constants ------------------------------------------------------- //
 export const NAMESPACE = 'eip155'
@@ -48,4 +49,19 @@ export async function fetchWallets(projectId: string, params: PageParams): Promi
 
 export function formatImageUrl(projectId: string, imageId: string) {
   return `${EXPLORER_API}/v3/logo/lg/${imageId}?projectId=${projectId}`
+}
+export async function initWalletConnect() {
+  const signClient = await SignClient.init({
+    projectId: '08fc834cc8959c233c8514026f6f4834',
+
+    metadata: {
+      name: 'Example Dapp',
+      description: 'Example Dapp',
+      url: '#',
+      icons: ['https://walletconnect.com/walletconnect-logo.png'],
+    },
+  })
+  console.log(signClient, 'from utils')
+
+  return signClient
 }
