@@ -3,6 +3,7 @@ import { customElement, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 import styles from './style.css'
+import FONT_FACES from '../../fonts/index'
 
 @customElement('lp-modal-container')
 export class LazerpayModalContainer extends LitElement {
@@ -16,6 +17,7 @@ export class LazerpayModalContainer extends LitElement {
   public constructor() {
     super()
     this.open = true
+    this.setupFontFaces()
   }
 
   private async onCloseModal(event: PointerEvent) {
@@ -24,6 +26,18 @@ export class LazerpayModalContainer extends LitElement {
     }
     const wallets = await WalletConnectCtrl.getPaginatedWallets({ entries: 20 })
     console.log(wallets)
+  }
+
+  /** Load styles */
+  private setupFontFaces() {
+    if (document.querySelector('style[title="__LazerpayStyle__"]')) {
+      return
+    }
+    const style = document.createElement('style')
+    style.title = '__LazerpayStyle__'
+
+    style.appendChild(document.createTextNode(FONT_FACES))
+    document.head.appendChild(style)
   }
 
   // -- render ------------------------------------------------------- //
