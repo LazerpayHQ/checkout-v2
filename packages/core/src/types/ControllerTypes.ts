@@ -11,7 +11,7 @@ export interface PageParams {
   search?: string
   entries?: number
   version?: number
-  device?: 'desktop' | 'mobile'
+  device?: 'android' | 'ios' | 'mac'
   order?: 'asc' | 'desc'
   chains?: string
 }
