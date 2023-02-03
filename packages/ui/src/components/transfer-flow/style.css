@@ -20,8 +20,20 @@
   margin-top: 24px;
 }
 
-@media screen and (max-width: 680px) {
-  .lp-transfer__box-wrapper {
-    /* width: 100%; */
-  }
+.lp-transfer__question {
+  cursor: pointer;
+}
+
+.lp-transfer__subheader {
+  display: flex;
+  align-items: center;
+  gap: 7.16px;
+  margin-top: 8.17px;
+}
+
+.lp-transfer__sub {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 135%;
+  color: #475569;
 }

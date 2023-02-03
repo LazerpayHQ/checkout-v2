@@ -24,7 +24,7 @@ export class LazerpayCheckoutBox extends LitElement {
     }
     return html`
       <div class="lp-box ${classMap(classes)}">
-        ${SvgIcons(this.icon)}
+        <div class="lp-box__wrapper">${SvgIcons(this.icon)}</div>
         <div>
           <div class="lp-box__title">${this.title}</div>
           ${this.description && html`<div class="lp-box__description">${this.description}</div>`}
