@@ -2,7 +2,6 @@
 import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
-import 'lit-icon'
 import { classMap } from 'lit/directives/class-map.js'
 
 @customElement('lp-checkout-header')
