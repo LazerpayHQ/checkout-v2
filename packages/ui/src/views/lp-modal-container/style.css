@@ -1,6 +1,6 @@
 .lp-overlay {
   display: none;
-  z-index: 999999;
+  z-index: 99;
   min-height: 100%;
   width: 100%;
   position: absolute;

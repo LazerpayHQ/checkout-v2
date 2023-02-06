@@ -10,18 +10,18 @@ export class LazerpayCheckoutModal extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public open: boolean = false
+  @property() public open: boolean = true
   @property() public title: string = ''
   @property() public content: string = ''
-  @property() public close: () => void = () => {}
+  @property() public closeModal: () => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
     const classes = {
       'lp-modal__open': this.open,
     }
-
     const btnTitle = 'Ok, I understand'
+    console.log(this.title, this.content)
 
     return html`
       <div class="lp-modal ${classMap(classes)}">
@@ -31,7 +31,7 @@ export class LazerpayCheckoutModal extends LitElement {
             <div class="lp-modal__content">${this.content}</div>
           </div>
           <div class="lp-modal__button-wrapper">
-            <lp-checkout-button .outline=${true} title=${btnTitle} @click=${this.close}></lp-checkout-button>
+            <lp-checkout-button .outline=${true} title=${btnTitle} .action=${this.closeModal}></lp-checkout-button>
           </div>
         </div>
       </div>

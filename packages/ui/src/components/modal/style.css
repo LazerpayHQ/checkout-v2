@@ -1,8 +1,8 @@
 .lp-modal {
   display: none;
-  z-index: 99999999;
   min-height: 100%;
   width: 100%;
+  z-index: 99999999999999;
   position: absolute;
   left: 0px;
   right: 0px;
@@ -27,6 +27,7 @@
 }
 
 .lp-modal__wrapper {
+  margin-top: 70px;
   max-width: 289px;
   width: 289px;
   background-color: white;
@@ -42,6 +43,7 @@
   font-size: 16px;
   line-height: 24px;
   color: #1e293b;
+  text-align: center;
 }
 
 .lp-modal__content {
@@ -66,5 +68,9 @@
 
   .lp-modal__inner-wrapper {
     padding-top: 28px;
+  }
+
+  .lp-modal__button-wrapper {
+    margin-top: 40px;
   }
 }

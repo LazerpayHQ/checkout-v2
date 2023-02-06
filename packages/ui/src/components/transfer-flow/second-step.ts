@@ -2,6 +2,7 @@ import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { SvgIcons } from '../../utils/SvgUtil'
 import styles from './style.css'
+import '../modal'
 
 const items = [
   {
@@ -36,23 +37,25 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
   // -- render ------------------------------------------------------- //
   protected render() {
     return html`
-      <div @click=${this.next}>
-        <div class="lp-transfer__header">Selet a transfer Network</div>
-        <div class="lp-transfer__subheader">
-          <div class="lp-transfer__question">${SvgIcons('QUESTION')}</div>
-          <div class="lp-transfer__sub">Selet a transfer Network</div>
-        </div>
-        <div class="lp-transfer__box-wrapper">
-          ${items.map(
-            (item) =>
-              html`
-                <lp-checkout-box
-                  .description=${item.description}
-                  .icon=${item.icon}
-                  .title=${item.title}
-                ></lp-checkout-box>
-              `
-          )}
+      <div>
+        <div @click=${this.next}>
+          <div class="lp-transfer__header">Selet a transfer Network</div>
+          <div class="lp-transfer__subheader">
+            <div class="lp-transfer__question">${SvgIcons('QUESTION')}</div>
+            <div class="lp-transfer__sub">Why select a network?</div>
+          </div>
+          <div class="lp-transfer__box-wrapper">
+            ${items.map(
+              (item) =>
+                html`
+                  <lp-checkout-box
+                    .description=${item.description}
+                    .icon=${item.icon}
+                    .title=${item.title}
+                  ></lp-checkout-box>
+                `
+            )}
+          </div>
         </div>
       </div>
     `
