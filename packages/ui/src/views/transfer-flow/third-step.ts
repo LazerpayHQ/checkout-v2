@@ -86,7 +86,7 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
           </div>
         </div>
         <div class="lp-transfer__btn-wrapper">
-          <lp-checkout-button title="I’ve made payment" action=${this.next}></lp-checkout-button>
+          <lp-checkout-button title="I’ve made payment" @click=${this.next} action=${this.next}></lp-checkout-button>
         </div>
       </div>
     `

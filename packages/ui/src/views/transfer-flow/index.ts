@@ -11,7 +11,7 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @state() public step: number = 4
+  @state() public step: number = 1
 
   public nextStep = () => {
     this.step = this.step + 1
