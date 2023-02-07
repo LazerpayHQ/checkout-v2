@@ -3,7 +3,6 @@ import { customElement, property, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import styles from './style.css'
 import 'lit-icon'
-import { SvgIcons } from '../../utils/SvgUtil'
 
 @customElement('lp-checkout-button')
 export class LazerpayCheckoutButton extends LitElement {

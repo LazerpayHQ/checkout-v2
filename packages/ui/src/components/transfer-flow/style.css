@@ -37,3 +37,155 @@
   line-height: 135%;
   color: #475569;
 }
+
+.lp-transfer__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lp-transfer__text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #334155;
+}
+
+.lp-transfer__amount {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: #1e293b;
+  margin-top: 4px;
+}
+
+.lp-transfer__network-wrapper {
+  margin-top: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  min-width: 118px;
+}
+
+.lp-transfer__network-text {
+  width: 60px;
+  height: 18px;
+  padding: 2px 6px;
+  background: #e9f2ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 14px;
+  color: #1e293b;
+  position: absolute;
+  top: -15px;
+}
+
+.lp-transfer__network {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 17px;
+  padding: 11px 14px;
+  padding-right: 29px;
+  gap: 12px;
+}
+
+.lp-transfer__network-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1e293b;
+}
+
+.lp-transfer__time-wrapper {
+  width: 57px;
+  height: 57px;
+}
+
+.lp-transfer__desc-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.lp-transfer__desc {
+  max-width: 80%;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #475569;
+  text-align: center;
+}
+
+.lp-transfer__qrcode-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.lp-transfer__address-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #f1f5f9;
+  border-radius: 4px;
+  margin-top: 12px;
+  height: 52px;
+  padding: 9px 16px;
+}
+.lp-transfer__copy-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  gap: 6px;
+  background: #f1f5f9;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.lp-transfer__copy-text {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  color: #125bc9;
+  min-width: 40px;
+}
+.lp-transfer__address-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #334155;
+}
+.lp-transfer__address {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #334155;
+  margin-top: 4px;
+}
+.lp-transfer__footer {
+  display: flex;
+  margin-top: 21.5px;
+  gap: 7.5px;
+}
+.lp-transfer__footer-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #475569;
+  width: 90%;
+}
+.lp-transfer__footer-text-bold {
+  font-weight: 600;
+}
+.lp-transfer__btn-wrapper {
+  margin-top: 32px;
+}
