@@ -3,7 +3,7 @@ import { customElement, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 import styles from './style.css'
-import FONT_FACES from '../../fonts/index'
+import FONT_FACES from '../../assets/fonts/index'
 
 @customElement('lp-modal-container')
 export class LazerpayModalContainer extends LitElement {
