@@ -4,6 +4,7 @@ import styles from './style.css'
 import './first-step'
 import './second-step'
 import './third-step'
+import './fourth-step'
 
 @customElement('lp-checkout-transfer-flow')
 export class LazerpayCheckoutTransferFlow extends LitElement {
@@ -23,6 +24,7 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
       html`<lp-checkout-transfer-first-step .next=${this.nextStep}></lp-checkout-transfer-first-step>`,
       html`<lp-checkout-transfer-second-step .next=${this.nextStep}></lp-checkout-transfer-second-step>`,
       html`<lp-checkout-transfer-third-step .next=${this.nextStep}></lp-checkout-transfer-third-step>`,
+      html`<lp-checkout-transfer-fourth-step .next=${this.nextStep}></lp-checkout-transfer-fourth-step>`,
     ]
 
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `

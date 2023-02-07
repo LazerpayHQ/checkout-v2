@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { SvgIcons } from '../../utils/SvgUtil'
 import styles from './style.css'
-import '../modal'
+import '../../components/modal'
 
 const items = [
   {

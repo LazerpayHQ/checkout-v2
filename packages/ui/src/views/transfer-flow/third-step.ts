@@ -5,7 +5,7 @@ import { SvgIcons } from '../../utils/SvgUtil'
 import styles from './style.css'
 import { createRef, Ref, ref } from 'lit/directives/ref.js'
 
-import '../modal'
+import '../../components/modal'
 import { truncateAddress } from '../../utils/methods'
 
 const qrCode = new QRCodeStyling({
