@@ -12,7 +12,7 @@ export class LazerpayModalContainer extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() private open = false
-  @state() public activeTab = 1
+  @state() public activeTab = 0
 
   // -- lifecycle ------------------------------------------- //
   public constructor() {
@@ -51,7 +51,7 @@ export class LazerpayModalContainer extends LitElement {
         <div class="lp-modal">
           <div @click=${this.onCloseModal} class="lp-modal__close">${SvgIcons('CANCEL_ICON')}</div>
           <div class="lp-container">
-            ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab}> </lp-checkout-sidebar> ` : null}
+            ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab} @tab-changed=${this.swithTab}> </lp-checkout-sidebar> ` : null}
             <div>
               <lp-checkout-header .activeStep=${this.activeTab}> </lp-checkout-header>
               <lp-checkout-content .activeTab=${this.activeTab}> </lp-checkout-content>
@@ -60,6 +60,10 @@ export class LazerpayModalContainer extends LitElement {
         </div>
       </div>
     `
+  }
+
+  public swithTab(e: CustomEvent) {
+    this.activeTab = e.detail.tab;
   }
 }
 
