@@ -270,6 +270,47 @@ export const SvgIcons = (icon: string, height?: string, width?: string) => {
           fill="#1E293B"
         />
       </svg> `
+    case 'METAMASK':
+      return html`<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24.0883 3.11914L15.3438 9.6138L16.9608 5.78204L24.0883 3.11914Z" fill="#E2761B" stroke="#E2761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.90234 3.11914L12.5765 9.67532L11.0386 5.78204L3.90234 3.11914Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20.9422 18.1738L18.6133 21.7419L23.5963 23.1129L25.0288 18.2529L20.9422 18.1738Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2.98047 18.2529L4.4042 23.1129L9.38725 21.7419L7.05831 18.1738L2.98047 18.2529Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.10732 12.1453L7.71875 14.2457L12.6666 14.4654L12.4909 9.14844L9.10732 12.1453Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.8894 12.1443L15.4619 9.08594L15.3477 14.4645L20.2868 14.2448L18.8894 12.1443Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.38672 21.741L12.3572 20.2909L9.79099 18.2871L9.38672 21.741Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.6367 20.2909L18.616 21.741L18.2029 18.2871L15.6367 20.2909Z" fill="#E4761B" stroke="#E4761B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.616 21.7431L15.6367 20.293L15.874 22.2352L15.8476 23.0525L18.616 21.7431Z" fill="#D7C1B3" stroke="#D7C1B3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.38672 21.7431L12.1551 23.0525L12.1375 22.2352L12.3572 20.293L9.38672 21.7431Z" fill="#D7C1B3" stroke="#D7C1B3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.1971 17.0058L9.71875 16.2763L11.4677 15.4766L12.1971 17.0058Z" fill="#233447" stroke="#233447" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.793 17.0058L16.5224 15.4766L18.2801 16.2763L15.793 17.0058Z" fill="#233447" stroke="#233447" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.38753 21.7419L9.80938 18.1738L7.05859 18.2529L9.38753 21.7419Z" fill="#CD6116" stroke="#CD6116" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.1953 18.1738L18.6172 21.7419L20.9461 18.2529L18.1953 18.1738Z" fill="#CD6116" stroke="#CD6116" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20.2868 14.2461L15.3477 14.4658L15.8047 17.0057L16.5341 15.4765L18.2918 16.2762L20.2868 14.2461Z" fill="#CD6116" stroke="#CD6116" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.72252 16.2762L11.4802 15.4765L12.2009 17.0057L12.6666 14.4658L7.71875 14.2461L9.72252 16.2762Z" fill="#CD6116" stroke="#CD6116" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7.71484 14.2461L9.78892 18.2888L9.71861 16.2762L7.71484 14.2461Z" fill="#E4751F" stroke="#E4751F" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.2871 16.2762L18.1992 18.2888L20.2821 14.2461L18.2871 16.2762Z" fill="#E4751F" stroke="#E4751F" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.6611 14.4648L12.1953 17.0047L12.7753 20.0016L12.9072 16.0556L12.6611 14.4648Z" fill="#E4751F" stroke="#E4751F" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.3428 14.4648L15.1055 16.0468L15.2109 20.0016L15.7998 17.0047L15.3428 14.4648Z" fill="#E4751F" stroke="#E4751F" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.7998 17.0048L15.2109 20.0017L15.6328 20.2917L18.199 18.2879L18.2869 16.2754L15.7998 17.0048Z" fill="#F6851B" stroke="#F6851B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.71875 16.2754L9.78906 18.2879L12.3553 20.2917L12.7771 20.0017L12.1971 17.0048L9.71875 16.2754Z" fill="#F6851B" stroke="#F6851B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.8462 23.0517L15.8726 22.2343L15.6529 22.041H12.3396L12.1375 22.2343L12.1551 23.0517L9.38672 21.7422L10.3534 22.5331L12.3133 23.8954H15.6792L17.6479 22.5331L18.6146 21.7422L15.8462 23.0517Z" fill="#C0AD9E" stroke="#C0AD9E" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.6345 20.292L15.2127 20.002H12.7783L12.3564 20.292L12.1367 22.2342L12.3389 22.0409H15.6521L15.8718 22.2342L15.6345 20.292Z" fill="#161616" stroke="#161616" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24.4564 10.0356L25.2034 6.44996L24.0873 3.11914L15.6328 9.39409L18.8845 12.1449L23.4809 13.4895L24.5004 12.3031L24.0609 11.9867L24.764 11.3451L24.2191 10.9233L24.9222 10.3872L24.4564 10.0356Z" fill="#763D16" stroke="#763D16" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2.79297 6.44996L3.53999 10.0356L3.06541 10.3872L3.76849 10.9233L3.23239 11.3451L3.93547 11.9867L3.49604 12.3031L4.50672 13.4895L9.10308 12.1449L12.3548 9.39409L3.90031 3.11914L2.79297 6.44996Z" fill="#763D16" stroke="#763D16" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M23.4811 13.4911L18.8847 12.1465L20.2821 14.2469L18.1992 18.2896L20.9412 18.2545H25.0278L23.4811 13.4911Z" fill="#F6851B" stroke="#F6851B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.10602 12.1465L4.50966 13.4911L2.98047 18.2545H7.05831L9.79152 18.2896L7.71744 14.2469L9.10602 12.1465Z" fill="#F6851B" stroke="#F6851B" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.3454 14.4662L15.6354 9.39526L16.9713 5.7832H11.0391L12.3573 9.39526L12.6649 14.4662L12.7704 16.0657L12.7792 20.0029H15.2136L15.2312 16.0657L15.3454 14.4662Z" fill="#F6851B" stroke="#F6851B" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      `
+    case 'COINBASE':
+      html`<img
+      src="../assets/coinbase.png"
+      alt="Lazerpay loading"
+      width="20"
+      height="20"
+    />
+      `
     default:
       return ''
   }

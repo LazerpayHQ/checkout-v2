@@ -4,16 +4,16 @@ import styles from './style.css'
 
 const items = [
   {
-    icon: 'USDTss',
-    title: 'Tether (USDT)',
+    icon: 'METAMASK',
+    title: 'Metamask',
   },
   {
-    icon: 'USDC',
-    title: 'USD Coin',
+    icon: 'COINBASE',
+    title: 'Coinbase Wallet',
   },
   {
     icon: 'BUSD',
-    title: 'Binance USD',
+    title: 'Binance Wallet',
   },
   {
     icon: 'DAI',
@@ -32,7 +32,7 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
   protected render() {
     return html`
       <div @click=${this.next}>
-        <div class="lp-transfer__header center">What do you want to pay with?</div>
+        <div class="lp-transfer__header center">Search for your wallet</div>
         <div class="lp-transfer__box-wrapper">
           ${items.map((item) => html` <lp-checkout-box .icon=${item.icon} .title=${item.title}></lp-checkout-box> `)}
         </div>
