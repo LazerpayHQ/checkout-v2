@@ -4,25 +4,25 @@ import styles from './style.css'
 
 const items = [
   {
-    icon: 'METAMASK',
-    title: 'Metamask',
+    icon: 'USDT',
+    title: 'Tether (USDT)',
   },
   {
-    icon: 'COINBASE',
-    title: 'Coinbase Wallet',
+    icon: 'USDC',
+    title: 'USD Coin',
   },
   {
     icon: 'BUSD',
-    title: 'Binance Wallet',
+    title: 'Binance USD',
   },
   {
-    icon: 'TRUSTWALLET',
-    title: 'Trust Wallet',
+    icon: 'DAI',
+    title: 'DAI Stablecoin ',
   },
 ]
 
-@customElement('lp-checkout-wallet-first-step')
-export class LazerpayCheckoutWalletFirstStep extends LitElement {
+@customElement('lp-checkout-wallet-third-step')
+export class LazerpayCheckoutWalletThirdStep extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
@@ -32,8 +32,7 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
   protected render() {
     return html`
       <div>
-        <div class="lp-transfer__header center">Search for your wallet</div>
-        <lz-input placeholder='Search'></lz-input>
+        <div class="lp-transfer__header center">Select currency</div>
         <div class="lp-transfer__box-wrapper">
           ${items.map((item) => html` <lp-checkout-box .icon=${item.icon} .title=${item.title} @click=${this.next}></lp-checkout-box> `)}
         </div>
@@ -44,6 +43,6 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lp-checkout-wallet-first-step': LazerpayCheckoutWalletFirstStep
+    'lp-checkout-wallet-third-step': LazerpayCheckoutWalletThirdStep
   }
 }

@@ -38,7 +38,7 @@ export class LazerpayCheckoutWalletSecondStep extends LitElement {
   protected render() {
     return html`
       <div>
-        <div @click=${this.next}>
+        <div>
           <div class="lp-transfer__header">Selet a transfer Network</div>
           <div class="lp-transfer__subheader">
             <div class="lp-transfer__question">${SvgIcons('QUESTION')}</div>
@@ -49,6 +49,7 @@ export class LazerpayCheckoutWalletSecondStep extends LitElement {
               (item) =>
                 html`
                   <lp-checkout-box
+                    @click=${this.next}
                     .description=${item.description}
                     .icon=${item.icon}
                     .title=${item.title}

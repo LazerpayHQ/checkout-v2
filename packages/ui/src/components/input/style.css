@@ -1,0 +1,29 @@
+.lz-search-box {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  border-radius: 4px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.lz-search-box input:focus {
+  border: none;
+  outline: none;
+}
+
+.lz-search-box input,
+.lz-search-box input::placeholder {
+  font-family: proxima;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.lz-search-box input {
+  border: none;
+  background: transparent;
+  margin-left: 13px;
+  font-weight: 600;
+}

@@ -3,6 +3,7 @@ import { customElement, state } from 'lit/decorators.js'
 import styles from './style.css'
 import './first-step'
 import './second-step'
+import './third-step'
 
 @customElement('lp-checkout-wallet-flow')
 export class LazerpayCheckoutWalletFlow extends LitElement {
@@ -19,6 +20,7 @@ export class LazerpayCheckoutWalletFlow extends LitElement {
     const components = [
       html`<lp-checkout-wallet-first-step .next=${this.nextStep}></lp-checkout-wallet-first-step>`,
       html`<lp-checkout-wallet-second-step .next=${this.nextStep}></lp-checkout-wallet-second-step>`,
+      html`<lp-checkout-wallet-third-step .next=${this.nextStep}></lp-checkout-wallet-third-step>`,
     ]
 
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `

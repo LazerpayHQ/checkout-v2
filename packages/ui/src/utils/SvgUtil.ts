@@ -477,7 +477,7 @@ export const SvgIcons = (icon: string, height?: string, width?: string) => {
         />
       </svg> `
     case 'COINBASE':
-      return html`<img src="../assets/coinbase.png" alt="Lazerpay loading" width="20" height="20" /> `
+      return html`<img src="images/coinbase.png" alt="coinbase" width="28" height="28" /> `
     case 'TRUSTWALLET':
       return html`<svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -491,6 +491,15 @@ export const SvgIcons = (icon: string, height?: string, width?: string) => {
           stroke-miterlimit="10"
           stroke-linecap="round"
           stroke-linejoin="round"
+        />
+      </svg> `
+    case 'search-icon':
+      return html`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0.665363 6.91602C0.665363 10.3678 3.46358 13.166 6.91536 13.166C8.35839 13.166 9.6872 12.677 10.7451 11.8556C10.7849 11.9399 10.8397 12.0189 10.9094 12.0886L15.9094 17.0886C16.2349 17.414 16.7625 17.414 17.088 17.0886C17.4134 16.7632 17.4134 16.2355 17.088 15.9101L12.088 10.9101C12.0182 10.8404 11.9392 10.7856 11.8549 10.7457C12.6763 9.68786 13.1654 8.35905 13.1654 6.91602C13.1654 3.46424 10.3671 0.666016 6.91536 0.666016C3.46358 0.666016 0.665363 3.46424 0.665363 6.91602ZM2.33203 6.91602C2.33203 4.38471 4.38406 2.33268 6.91536 2.33268C9.44667 2.33268 11.4987 4.38471 11.4987 6.91602C11.4987 9.44732 9.44667 11.4993 6.91536 11.4993C4.38406 11.4993 2.33203 9.44732 2.33203 6.91602Z"
+          fill="black"
         />
       </svg> `
     default:
