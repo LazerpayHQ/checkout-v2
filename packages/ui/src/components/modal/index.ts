@@ -13,7 +13,7 @@ export class LazerpayCheckoutModal extends LitElement {
   @property() public open: boolean = true
   @property() public title: string = ''
   @property() public content: string = ''
-  @property() public closeModal: () => void = () => {}
+  // @property() public closeModal: () => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -31,11 +31,20 @@ export class LazerpayCheckoutModal extends LitElement {
             <div class="lp-modal__content">${this.content}</div>
           </div>
           <div class="lp-modal__button-wrapper">
-            <lp-checkout-button .outline=${true} title=${btnTitle} .action=${this.closeModal}></lp-checkout-button>
+            <lp-checkout-button .outline=${true} title=${btnTitle} @action=${this.closeModal}></lp-checkout-button>
           </div>
         </div>
       </div>
     `
+  }
+
+  private closeModal() {
+    this.dispatchEvent(
+      new CustomEvent('close-modal', {
+        bubbles: true,
+        composed: true,
+      })
+    )
   }
 }
 

@@ -10,16 +10,26 @@ export class LazerpayCheckoutButton extends LitElement {
   // -- state & properties ------------------------------------------- //
   @property() public outline: boolean = false
   @property() public title: string = ''
-  @property() public action: () => void = () => {}
+  // @property() public action: () => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
     const classes = {
       'lp-box__outline': this.outline,
     }
+
     return html`
       <button @click=${this.action} type="button" class="lp-button ${classMap(classes)}">${this.title}</button>
     `
+  }
+
+  private action() {
+    this.dispatchEvent(
+      new CustomEvent('action', {
+        bubbles: true,
+        composed: true,
+      })
+    )
   }
 }
 

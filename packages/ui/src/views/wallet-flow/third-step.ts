@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import styles from './style.css'
 
 const items = [
@@ -27,14 +27,38 @@ export class LazerpayCheckoutWalletThirdStep extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @property() public next: () => void = () => {}
+  @state() private modalOpen = false
+
+  private toggleModal() {
+    this.modalOpen = !this.modalOpen
+  }
+
+  private goToNext() {
+    this.toggleModal()
+    this.next()
+  }
 
   // -- render ------------------------------------------------------- //
   protected render() {
+    const modalContent =
+      'Some cryptocurrencies may be built on more than one network. To protect your funds, it’s important to select the right one. For cryptocurrencies with just one network, the default network has been preselected for you.'
+
     return html`
       <div>
+        <lp-checkout-modal
+          .open=${this.modalOpen}
+          title="Why select a Network?"
+          content=${modalContent}
+          @close-modal=${this.goToNext}
+        ></lp-checkout-modal>
         <div class="lp-transfer__header center">Select currency</div>
         <div class="lp-transfer__box-wrapper">
-          ${items.map((item) => html` <lp-checkout-box .icon=${item.icon} .title=${item.title} @click=${this.next}></lp-checkout-box> `)}
+          ${items.map(
+            (item) =>
+              html`
+                <lp-checkout-box .icon=${item.icon} .title=${item.title} @click=${this.toggleModal}></lp-checkout-box>
+              `
+          )}
         </div>
       </div>
     `

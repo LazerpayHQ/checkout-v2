@@ -12,7 +12,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
   inset: 0px;
   top: 0px;
   right: 0px;

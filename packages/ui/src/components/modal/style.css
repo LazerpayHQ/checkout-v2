@@ -13,7 +13,7 @@
   background: rgba(161, 161, 161, 0.3);
   backdrop-filter: blur(1px);
   overflow: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
   inset: 0px;
   top: 0px;
   right: 0px;
