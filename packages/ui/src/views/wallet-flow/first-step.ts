@@ -16,8 +16,8 @@ const items = [
     title: 'Binance Wallet',
   },
   {
-    icon: 'DAI',
-    title: 'DAI Stablecoin ',
+    icon: 'TRUSTWALLET',
+    title: 'Trust Wallet',
   },
 ]
 
