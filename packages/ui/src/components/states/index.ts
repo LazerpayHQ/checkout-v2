@@ -84,6 +84,45 @@ export class LazerpayCheckoutStates extends LitElement {
       `
     }
 
+    if (this.status === 'refund') {
+      return html`
+        <div>
+          <div class="lp-states">
+            ${SvgIcons('REFUND')}
+            <div class="lp-states__no-payment">Refund requested</div>
+            <div class="lp-states__text-wrapper">
+              <div class="lp-states__text">Your transaction was successful but you overpaid Lazer Technologies.</div>
+            </div>
+            <div class="lp-states__text-wrapper lp-states__footer-wrapper">
+              <div>
+                We’re currently processing your payment refund, if you need any other assistance, contact us at
+                <a class="lp-states__link" href="mailto:support@lazerpay.finance">support@lazerpay.finance</a>
+              </div>
+            </div>
+          </div>
+          <lp-checkout-button title="Close" @click=${() => null}></lp-checkout-button>
+        </div>
+      `
+    }
+
+    if (this.status === 'cancelled') {
+      return html`
+        <div>
+          <div class="lp-states">
+            ${SvgIcons('REJECTED')}
+            <div class="lp-states__no-payment">Transaction cancelled</div>
+            <div class="lp-states__text-wrapper cancelled">
+              <div class="lp-states__text">
+                This transaction was cancelled by the merchant. The amount paid has been returned to the originating
+                wallet.
+              </div>
+            </div>
+          </div>
+          <lp-checkout-button title="Close" @click=${() => null}></lp-checkout-button>
+        </div>
+      `
+    }
+
     return html`<div></div>`
   }
 }

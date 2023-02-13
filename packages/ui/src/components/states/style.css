@@ -36,6 +36,10 @@
   justify-content: center;
   max-width: 95%;
 }
+.lp-states__text-wrapper.cancelled {
+  max-width: 100%;
+  margin-bottom: 30px;
+}
 .lp-states__text {
   text-align: center;
   font-weight: 400;
@@ -97,4 +101,9 @@
 }
 .lp-states__summary-value.balance {
   color: #ef4444;
+}
+.lp-states__link {
+  display: inline;
+  color: #125bc9;
+  text-decoration: underline;
 }
