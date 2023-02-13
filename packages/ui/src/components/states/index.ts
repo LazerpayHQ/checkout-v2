@@ -56,6 +56,34 @@ export class LazerpayCheckoutStates extends LitElement {
       `
     }
 
+    if (this.status === 'partial') {
+      return html`
+        <div>
+          <div class="lp-states">
+            ${SvgIcons('PARTIAL')}
+            <div class="lp-states__amount">150.00 USDT</div>
+            <div class="lp-states__text-wrapper">
+              <div class="lp-states__text">Partial payment paid to Lazer Technologies</div>
+            </div>
+            <div class="lp-states__summary-wrapper">
+              <div class="lp-states__summary">
+                <div class="lp-states__summary-title">Total order amount</div>
+                <div class="lp-states__summary-value">231.46 USDT</div>
+              </div>
+              <div class="lp-states__summary">
+                <div class="lp-states__summary-title">Amount to balance</div>
+                <div class="lp-states__summary-value balance">81.46 USDT</div>
+              </div>
+            </div>
+            <div class="lp-states__text-wrapper lp-states__footer-wrapper small">
+              <div>To complete this transaction, click on the button below.</div>
+            </div>
+          </div>
+          <lp-checkout-button title="Pay balance" @click=${() => null}></lp-checkout-button>
+        </div>
+      `
+    }
+
     return html`<div></div>`
   }
 }
