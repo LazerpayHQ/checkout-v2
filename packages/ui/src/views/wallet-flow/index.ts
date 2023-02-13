@@ -13,7 +13,7 @@ export class LazerpayCheckoutWalletFlow extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @state() public step = 6
+  @state() public step = 1
 
   public nextStep = () => {
     this.step += 1
@@ -27,6 +27,7 @@ export class LazerpayCheckoutWalletFlow extends LitElement {
       html`<lp-checkout-wallet-fourth-step .next=${this.nextStep}></lp-checkout-wallet-fourth-step>`,
       html`<lp-checkout-wallet-fifth-step .next=${this.nextStep}></lp-checkout-wallet-fifth-step>`,
       html`<lp-checkout-wallet-sixth-step .next=${this.nextStep}></lp-checkout-wallet-sixth-step>`,
+      html`<lp-checkout-states .status=${'success'}></lp-checkout-states>`,
     ]
 
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `

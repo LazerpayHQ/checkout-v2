@@ -17,6 +17,9 @@ export class LazerpayCheckoutWalletSixthStep extends LitElement {
     super()
     setTimeout(() => {
       this.transactionStatus = { title: 'Confirming Payment', desc: 'We are confirming the status of your transaction' }
+      setTimeout(()=>{
+        this.next()
+      },2000)
     }, 2000)
   }
 
