@@ -1,7 +1,6 @@
 import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
-import 'lit-icon'
 
 @customElement('lp-checkout-content')
 export class LazerpayCheckoutContent extends LitElement {

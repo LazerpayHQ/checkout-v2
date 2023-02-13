@@ -1,8 +1,7 @@
 import { html, LitElement } from 'lit'
-import { customElement, property, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import styles from './style.css'
-import 'lit-icon'
 import { SvgIcons } from '../../utils/SvgUtil'
 
 @customElement('lp-checkout-box')

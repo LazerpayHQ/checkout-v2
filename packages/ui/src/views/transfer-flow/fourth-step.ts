@@ -9,6 +9,17 @@ export class LazerpayCheckoutTransferFourthStep extends LitElement {
   // -- state & properties ------------------------------------------- //
   @property() public next: () => void = () => {}
 
+  // -- lifecycle ---------------------------------------------------- //
+  protected firstUpdated() {
+    this.handleNext()
+  }
+
+  private handleNext = () => {
+    setTimeout(() => {
+      this.next()
+    }, 3000)
+  }
+
   // -- render ------------------------------------------------------- //
   protected render() {
     return html`
