@@ -38,6 +38,10 @@
   padding: 24px;
 }
 
+.lp-modal__error .lp-modal__title {
+  color: #EF4444;
+}
+
 .lp-modal__title {
   font-weight: 600;
   font-size: 16px;
@@ -59,6 +63,15 @@
   margin-top: 56px;
   padding: 16px 24px;
   border-top: 1px solid #f1f5f9;
+}
+
+.lp-modal__button-container {
+  display: flex;
+  gap: 10px;
+}
+
+lp-checkout-button {
+  flex: 1;
 }
 
 @media screen and (max-width: 680px) {

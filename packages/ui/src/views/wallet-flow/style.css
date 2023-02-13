@@ -220,6 +220,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
 }
 .lp-transfer__process-text-desc {
   font-weight: 400;
@@ -242,7 +243,8 @@
 .lp-transfer__link {
   display: inline;
   color: #125bc9;
-  text-decoration: underline;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 680px) {

@@ -6,6 +6,8 @@ import styles from './style.css'
 export class LazerpayCheckoutWalletFourthStep extends LitElement {
   public static styles = [styles]
 
+  @property() public next: () => void = () => {};
+
   protected render() {
     return html` <div class="fourth-step">
       <h3 class="fourth-step-header">Authenticate with Coinbase</h3>
@@ -20,7 +22,7 @@ export class LazerpayCheckoutWalletFourthStep extends LitElement {
       </ol>
       <div class="fourth-step-actions">
         <div>
-          <lp-checkout-button .outline=${false} title="Continue"></lp-checkout-button>
+          <lp-checkout-button .outline=${false} title="Continue" @action=${this.next}></lp-checkout-button>
         </div>
         <lp-checkout-button .outline=${true} title="Connect with mobile app"></lp-checkout-button>
       </div>

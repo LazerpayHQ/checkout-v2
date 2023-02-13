@@ -13,12 +13,14 @@ export class LazerpayCheckoutModal extends LitElement {
   @property() public open: boolean = true
   @property() public title: string = ''
   @property() public content: string = ''
+  @property() public errorModal = false
   // @property() public closeModal: () => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
     const classes = {
       'lp-modal__open': this.open,
+      'lp-modal__error': this.errorModal,
     }
     const btnTitle = 'Ok, I understand'
     console.log(this.title, this.content)
@@ -31,7 +33,27 @@ export class LazerpayCheckoutModal extends LitElement {
             <div class="lp-modal__content">${this.content}</div>
           </div>
           <div class="lp-modal__button-wrapper">
-            <lp-checkout-button .outline=${true} title=${btnTitle} @action=${this.closeModal}></lp-checkout-button>
+            ${this.errorModal
+              ? html`<div class="lp-modal__button-container">
+                  <lp-checkout-button
+                    .outline=${true}
+                    .error=${true}
+                    title="Yes, cancel"
+                    class="lp-modal__button"
+                    @action=${this.closeModal}
+                  ></lp-checkout-button>
+                  <lp-checkout-button
+                    .error=${true}
+                    class="lp-modal__button"
+                    title="No, stay on page"
+                    @action=${this.closeModal}
+                  ></lp-checkout-button>
+                </div>`
+              : html`<lp-checkout-button
+                  .outline=${true}
+                  title=${btnTitle}
+                  @action=${this.closeModal}
+                ></lp-checkout-button>`}
           </div>
         </div>
       </div>

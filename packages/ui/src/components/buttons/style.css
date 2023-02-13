@@ -5,8 +5,8 @@
   background: #125bc9;
   border-radius: 5px;
   color: #ffffff;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: 17px;
   text-align: center;
   cursor: pointer;
@@ -17,4 +17,17 @@
   border: 1px solid #125bc9;
   background: #ffffff;
   color: #125bc9;
+}
+
+.lp-box__outline.lp-box__error {
+  border-color: #EF4444;
+  color: #EF4444;
+}
+
+lp-checkout-button {
+  flex: 1
+}
+
+.lp-modal__button {
+  padding: 0;
 }

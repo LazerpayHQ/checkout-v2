@@ -8,14 +8,18 @@ export class LazerpayCheckoutButton extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public outline: boolean = false
-  @property() public title: string = ''
+  @property() public outline = false
+  @property() public error = false
+  @property() public title = ''
+  @property() public class = ''
   // @property() public action: () => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
     const classes = {
       'lp-box__outline': this.outline,
+      'lp-box__error': this.error,
+      [this.class]: true
     }
 
     return html`
