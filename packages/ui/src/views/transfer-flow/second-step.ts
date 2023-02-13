@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import { SvgIcons } from '../../utils/SvgUtil'
 import styles from './style.css'
 import '../../components/modal'
@@ -33,15 +33,28 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @property() public next: () => void = () => {}
+  @state() private modalOpen = false
+
+  private toggleModal() {
+    this.modalOpen = !this.modalOpen
+  }
 
   // -- render ------------------------------------------------------- //
   protected render() {
+    const modalContent =
+      'Some cryptocurrencies may be built on more than one network. To protect your funds, it’s important to select the right one. For cryptocurrencies with just one network, the default network has been preselected for you.'
     return html`
       <div>
-        <div @click=${this.next}>
+        <lp-checkout-modal
+          .open=${this.modalOpen}
+          title="Why select a Network?"
+          content=${modalContent}
+          @close-modal=${this.toggleModal}
+        ></lp-checkout-modal>
+        <div>
           <div class="lp-transfer__header">Selet a transfer Network</div>
           <div class="lp-transfer__subheader">
-            <div class="lp-transfer__question">${SvgIcons('QUESTION')}</div>
+            <div @click=${this.toggleModal} class="lp-transfer__question">${SvgIcons('QUESTION')}</div>
             <div class="lp-transfer__sub">Why select a network?</div>
           </div>
           <div class="lp-transfer__box-wrapper">
@@ -49,6 +62,7 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
               (item) =>
                 html`
                   <lp-checkout-box
+                    @click=${this.next}
                     .description=${item.description}
                     .icon=${item.icon}
                     .title=${item.title}

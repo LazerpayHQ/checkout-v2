@@ -13,22 +13,31 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
   // -- state & properties ------------------------------------------- //
   @state() public step: number = 1
 
-  public nextStep = () => {
+  public next = () => {
     this.step = this.step + 1
+    this.nextHeader()
   }
 
   // -- render ------------------------------------------------------- //
   protected render() {
-    // this.next()
     const components = [
-      html`<lp-checkout-transfer-first-step .next=${this.nextStep}></lp-checkout-transfer-first-step>`,
-      html`<lp-checkout-transfer-second-step .next=${this.nextStep}></lp-checkout-transfer-second-step>`,
-      html`<lp-checkout-transfer-third-step .next=${this.nextStep}></lp-checkout-transfer-third-step>`,
-      html`<lp-checkout-transfer-fourth-step .next=${this.nextStep}></lp-checkout-transfer-fourth-step>`,
+      html`<lp-checkout-transfer-first-step .next=${this.next}></lp-checkout-transfer-first-step>`,
+      html`<lp-checkout-transfer-second-step .next=${this.next}></lp-checkout-transfer-second-step>`,
+      html`<lp-checkout-transfer-third-step .next=${this.next}></lp-checkout-transfer-third-step>`,
+      html`<lp-checkout-transfer-fourth-step .next=${this.next}></lp-checkout-transfer-fourth-step>`,
       html`<lp-checkout-states .status=${'success'}></lp-checkout-states>`,
     ]
 
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `
+  }
+
+  private nextHeader() {
+    this.dispatchEvent(
+      new CustomEvent('nextHeader', {
+        bubbles: true,
+        composed: true,
+      })
+    )
   }
 }
 

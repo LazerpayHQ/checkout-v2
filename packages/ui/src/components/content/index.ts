@@ -19,7 +19,7 @@ export class LazerpayCheckoutContent extends LitElement {
             ${choose(
               this.activeTab,
               [
-                [0, () => html`<lp-checkout-transfer-flow></lp-checkout-transfer-flow>`],
+                [0, () => html`<lp-checkout-transfer-flow @nextHeader=${this.nextStep}></lp-checkout-transfer-flow>`],
                 [1, () => html`<lp-checkout-wallet-flow></lp-checkout-wallet-flow>`],
               ],
               () => html`<lp-checkout-transfer-flow></lp-checkout-transfer-flow>`
@@ -28,6 +28,15 @@ export class LazerpayCheckoutContent extends LitElement {
         </div>
       </div>
     `
+  }
+
+  private nextStep() {
+    this.dispatchEvent(
+      new CustomEvent('nextStep', {
+        bubbles: true,
+        composed: true,
+      })
+    )
   }
 }
 

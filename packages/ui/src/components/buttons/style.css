@@ -20,12 +20,12 @@
 }
 
 .lp-box__outline.lp-box__error {
-  border-color: #EF4444;
-  color: #EF4444;
+  border-color: #ef4444;
+  color: #ef4444;
 }
 
 lp-checkout-button {
-  flex: 1
+  flex: 1;
 }
 
 .lp-modal__button {
