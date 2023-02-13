@@ -59,7 +59,7 @@ export class LazerpayCheckoutSideBar extends LitElement {
           ${this.tabs.map(
             (tab, index) => html`<div
               class="lp-sidebar__content-inner ${classMap(classes(index === this.activeTab))}"
-              @click=${() => (this.activeTab = index)}
+              @click=${() => this.changeTab(index)}
             >
               <div class="lp-sidebar__tab__icon">${icon(index === this.activeTab, index)}</div>
               <div class="lp-sidebar__tab__title">${tab.title}</div>
@@ -69,6 +69,16 @@ export class LazerpayCheckoutSideBar extends LitElement {
       </div>
     `
   }
+
+
+  private changeTab(index: number) {
+    this.dispatchEvent(new CustomEvent('tab-changed', {
+      detail: {tab: index},
+      bubbles: true,
+      cancelable: true
+    }))
+  }
+
 }
 
 declare global {

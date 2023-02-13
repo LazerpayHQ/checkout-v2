@@ -9,7 +9,7 @@ export class LazerpayCheckoutHeader extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public activeStep: number = 1
+  @property() public activeStep = 1
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -33,8 +33,8 @@ export class LazerpayCheckoutHeader extends LitElement {
           </div>
         </div>
         <div class="lp-header__steps">
-          ${[1, 2, 3, 4].map(
-            (step) => html` <div class="lp-header__line ${classMap(classes(step <= this.activeStep))}"></div> `
+          ${[0, 1, 2, 3].map(
+            (step) => html` <div class="lp-header__line ${classMap(classes(step === this.activeStep))}"></div> `
           )}
         </div>
       </div>
