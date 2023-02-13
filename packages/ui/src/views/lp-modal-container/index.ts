@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js'
 import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 import styles from './style.css'
 import FONT_FACES from '../../assets/fonts/index'
+import { SvgIcons } from '../../utils/SvgUtil'
 
 @customElement('lp-modal-container')
 export class LazerpayModalContainer extends LitElement {
@@ -21,9 +22,7 @@ export class LazerpayModalContainer extends LitElement {
   }
 
   private async onCloseModal(event: PointerEvent) {
-    if (event.target === event.currentTarget) {
-      this.open = false
-    }
+    this.open = false
     const wallets = await WalletConnectCtrl.getPaginatedWallets({ entries: 20 })
     console.log(wallets)
   }
@@ -48,18 +47,15 @@ export class LazerpayModalContainer extends LitElement {
     }
 
     return html`
-      <div
-        id="lp-modal-container"
-        @click=${this.onCloseModal}
-        class=${classMap(classes)}
-        role="alertdialog"
-        aria-modal="true"
-      >
-        <div class="lp-container">
-          ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab}> </lp-checkout-sidebar> ` : null}
-          <div>
-            <lp-checkout-header .activeStep=${this.activeTab}> </lp-checkout-header>
-            <lp-checkout-content .activeTab=${this.activeTab}> </lp-checkout-content>
+      <div id="lp-modal-container" class=${classMap(classes)} role="alertdialog" aria-modal="true">
+        <div class="lp-modal">
+          <div @click=${this.onCloseModal} class="lp-modal__close">${SvgIcons('CANCEL_ICON')}</div>
+          <div class="lp-container">
+            ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab}> </lp-checkout-sidebar> ` : null}
+            <div>
+              <lp-checkout-header .activeStep=${this.activeTab}> </lp-checkout-header>
+              <lp-checkout-content .activeTab=${this.activeTab}> </lp-checkout-content>
+            </div>
           </div>
         </div>
       </div>

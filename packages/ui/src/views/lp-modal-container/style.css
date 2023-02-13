@@ -20,6 +20,19 @@
   left: 0px;
 }
 
+.lp-modal {
+  position: relative;
+  padding: 20px;
+}
+
+.lp-modal__close {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  cursor: pointer;
+  z-index: 9999999999999999;
+}
+
 .lp-container {
   max-width: 680px;
   width: 680px;
@@ -38,5 +51,11 @@
 @media screen and (max-width: 680px) {
   .lp-container {
     width: 100%;
+  }
+  .lp-modal {
+    padding: 0;
+  }
+  .lp-modal__close {
+    display: none;
   }
 }
