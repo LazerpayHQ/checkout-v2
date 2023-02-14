@@ -1,3 +1,4 @@
 export { ApiCtrl } from './src/controllers/ApiCtrl'
 export { WalletConnectCtrl } from './src/controllers/WalletConnectCtrl'
-export { initWalletConnect } from './src/utils'
+export { ClientCtrl } from './src/controllers/ClientCtrl'
+export { walletConnectProvider, modalConnectors, EthereumClient } from './src/Ethereum/client'

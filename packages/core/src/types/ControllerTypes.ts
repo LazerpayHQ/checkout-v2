@@ -1,3 +1,4 @@
+import type { Chain, EthereumClient } from '../Ethereum/client'
 // -- ModalCtrl --------------------------------------- //
 export interface ModalCtrlState {
   open: boolean
@@ -57,4 +58,25 @@ export interface Listing {
 export interface ListingResponse {
   listings: Listing[]
   total: number
+}
+// -- ClientCtrl ------------------------------------------- //
+export interface ClientCtrlState {
+  initialized: boolean
+  ethereumClient?: EthereumClient
+}
+// -- OptionsCtrl --------------------------------------- //
+export interface OptionsCtrlState {
+  selectedChain?: Chain
+  chains?: EthereumClient['chains']
+  standaloneChains?: string[]
+  standaloneUri?: string
+  address?: `0x${string}`
+  isConnected: boolean
+  isStandalone: boolean
+  isCustomDesktop: boolean
+  isCustomMobile: boolean
+  isDataLoaded: boolean
+  isUiLoaded: boolean
+  balanceLoading?: boolean
+  balance?: { amount: string; symbol: string }
 }
