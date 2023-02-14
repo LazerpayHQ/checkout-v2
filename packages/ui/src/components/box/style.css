@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.lp-box__wrapper {
+  width: 12%;
+}
+
 .lp-box__primary {
   background: #f8fafc;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);

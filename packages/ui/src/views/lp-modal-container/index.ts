@@ -4,7 +4,8 @@ import { classMap } from 'lit/directives/class-map.js'
 import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 import { initWalletConnect } from '@lazerpay-checkout/core'
 import styles from './style.css'
-import FONT_FACES from '../../fonts/index'
+import FONT_FACES from '../../assets/fonts/index'
+import { SvgIcons } from '../../utils/SvgUtil'
 
 @customElement('lp-modal-container')
 export class LazerpayModalContainer extends LitElement {
@@ -12,8 +13,9 @@ export class LazerpayModalContainer extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() private open = false
-  @state() public activeTab = 1
-  @state() public client
+  @state() public activeTab = 0
+  @state() private confirmModalOpen = false
+  @state() public activeHeaderStep = 1
 
   // -- lifecycle ------------------------------------------- //
   public constructor() {
@@ -35,9 +37,11 @@ export class LazerpayModalContainer extends LitElement {
       this.open = false
     }
     await this.initializeWallet(this.client)
-    await this.connectWallet()
-    const wallets = await WalletConnectCtrl.getPaginatedWallets({ entries: 20 })
-    console.log(wallets)
+    this.confirmModalOpen = !this.confirmModalOpen
+  }
+
+  private nextStep() {
+    this.activeHeaderStep += 1
   }
 
   /** Load styles */
@@ -59,23 +63,35 @@ export class LazerpayModalContainer extends LitElement {
       'lp-open': this.open,
     }
 
+    const modalContent = 'Please note that if you cancel this payment, all unfinished transactions will be lost.'
+
     return html`
-      <div
-        id="lp-modal-container"
-        @click=${this.onCloseModal}
-        class=${classMap(classes)}
-        role="alertdialog"
-        aria-modal="true"
-      >
-        <div class="lp-container">
-          ${this.open ? html` <lp-checkout-sidebar .activeTab=${this.activeTab}> </lp-checkout-sidebar> ` : null}
-          <div>
-            <lp-checkout-header .activeStep=${this.activeTab}> </lp-checkout-header>
-            <lp-checkout-content .activeTab=${this.activeTab}> </lp-checkout-content>
+      <div id="lp-modal-container" class=${classMap(classes)} role="alertdialog" aria-modal="true">
+        <lp-checkout-modal
+          .open=${this.confirmModalOpen}
+          title="Cancel payment?"
+          content=${modalContent}
+          errorModal=${true}
+          @close-modal=${this.onCloseModal}
+        ></lp-checkout-modal>
+
+        <div class="lp-modal">
+          <div @click=${this.confirmCloseModal} class="lp-modal__close">${SvgIcons('CANCEL_ICON')}</div>
+          <div class="lp-container">
+            <lp-checkout-sidebar .activeTab=${this.activeTab} @tab-changed=${this.swithTab}> </lp-checkout-sidebar>
+            <div>
+              <lp-checkout-header .activeTab=${this.activeTab} .activeHeaderStep=${this.activeHeaderStep}>
+              </lp-checkout-header>
+              <lp-checkout-content @nextStep=${this.nextStep} .activeTab=${this.activeTab}> </lp-checkout-content>
+            </div>
           </div>
         </div>
       </div>
     `
+  }
+
+  public swithTab(e: CustomEvent) {
+    this.activeTab = e.detail.tab
   }
 }
 

@@ -1,0 +1,60 @@
+.fourth-step {
+  font-family: proxima;
+}
+
+.fourth-step-header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.fourth-step-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fourth-step-sub-header p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 135%;
+  color: #1e293b;
+  margin: 0;
+  margin-left: 8px;
+}
+
+.fourth-step-link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 135%;
+  color: #94a3b8;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.fourth-step-list {
+  margin-bottom: 40px;
+}
+
+.fourth-step-list li {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 135%;
+  color: #334155;
+}
+
+.fourth-step-list li:first-child {
+  margin-bottom: 12px;
+  margin-top: 22px;
+}
+
+.fourth-step-actions > div {
+  margin-bottom: 8px;
+}

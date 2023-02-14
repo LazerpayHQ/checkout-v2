@@ -1,0 +1,89 @@
+.lp-modal {
+  display: none;
+  min-height: 100%;
+  width: 100%;
+  z-index: 99999999999999;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  background: rgba(161, 161, 161, 0.3);
+  backdrop-filter: blur(1px);
+  overflow: hidden;
+  /* pointer-events: none; */
+  inset: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.lp-modal__open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lp-modal__wrapper {
+  margin-top: 70px;
+  max-width: 289px;
+  width: 289px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.lp-modal__inner-wrapper {
+  padding: 24px;
+}
+
+.lp-modal__error .lp-modal__title {
+  color: #EF4444;
+}
+
+.lp-modal__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1e293b;
+  text-align: center;
+}
+
+.lp-modal__content {
+  margin-top: 24px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #475569;
+  text-align: left;
+}
+
+.lp-modal__button-wrapper {
+  margin-top: 56px;
+  padding: 16px 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.lp-modal__button-container {
+  display: flex;
+  gap: 10px;
+}
+
+lp-checkout-button {
+  flex: 1;
+}
+
+@media screen and (max-width: 680px) {
+  .lp-modal__wrapper {
+    width: 270px;
+  }
+
+  .lp-modal__inner-wrapper {
+    padding-top: 28px;
+  }
+
+  .lp-modal__button-wrapper {
+    margin-top: 40px;
+  }
+}

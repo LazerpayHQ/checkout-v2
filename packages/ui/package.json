@@ -22,7 +22,8 @@
   "dependencies": {
     "@lazerpay-checkout/core": "2.0.0",
     "lit": "2.6.1",
-    "lit-icon": "^1.0.1"
+    "lit-icon": "^1.0.1",
+    "qr-code-styling": "^1.6.0-rc.1"
   },
   "keywords": [
     "crypto",
@@ -30,7 +31,7 @@
     "Lazerpay",
     "Checkout"
   ],
-  "author": "Njoku Emmanuel",
+  "author": "Njoku Emmanuel, Justice Eziefule",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/LazerPay-Finance/checkout-v2/issues"

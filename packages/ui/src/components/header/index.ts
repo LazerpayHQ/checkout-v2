@@ -2,7 +2,6 @@
 import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
-import 'lit-icon'
 import { classMap } from 'lit/directives/class-map.js'
 
 @customElement('lp-checkout-header')
@@ -10,7 +9,8 @@ export class LazerpayCheckoutHeader extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public activeStep: number | undefined
+  @property() public activeHeaderStep = 1
+  @property() public activeTab: number = 0
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -20,6 +20,7 @@ export class LazerpayCheckoutHeader extends LitElement {
         'lp-header__inactive': !active,
       }
     }
+    const headerLines = this.activeTab === 0 ? 5 : 5
 
     return html`
       <div class="lp-header">
@@ -34,8 +35,9 @@ export class LazerpayCheckoutHeader extends LitElement {
           </div>
         </div>
         <div class="lp-header__steps">
-          ${[1, 2, 3, 4].map(
-            (step) => html` <div class="lp-header__line ${classMap(classes(step === this.activeStep))}"></div> `
+          ${Array.from(Array(headerLines).keys())?.map(
+            (step, index) =>
+              html` <div class="lp-header__line ${classMap(classes(index + 1 <= this.activeHeaderStep))}"></div> `
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
 
 const items = [
@@ -25,10 +25,13 @@ const items = [
 export class LazerpayCheckoutTransferFirstStep extends LitElement {
   public static styles = [styles]
 
+  // -- state & properties ------------------------------------------- //
+  @property() public next: () => void = () => {}
+
   // -- render ------------------------------------------------------- //
   protected render() {
     return html`
-      <div>
+      <div @click=${this.next}>
         <div class="lp-transfer__header center">What do you want to pay with?</div>
         <div class="lp-transfer__box-wrapper">
           ${items.map((item) => html` <lp-checkout-box .icon=${item.icon} .title=${item.title}></lp-checkout-box> `)}

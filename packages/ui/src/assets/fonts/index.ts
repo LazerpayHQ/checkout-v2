@@ -13,7 +13,7 @@ const FONT_FACES = `
     @font-face {
       font-family: "proxima";
       font-style: normal;
-      font-weight: 500;
+      font-weight: 600;
       font-stretch: normal;
       src: url('https://cdn.jsdelivr.net/gh/LazerPay-Finance/lazer-font@main/fonts/proxima/ProximaNovaA-Semibold.woff2') format('woff2'), 
            url('https://cdn.jsdelivr.net/gh/LazerPay-Finance/lazer-font@main/fonts/proxima/ProximaNovaA-Semibold.woff') format('woff');
