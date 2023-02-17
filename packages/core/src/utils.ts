@@ -72,3 +72,18 @@ export const CoreUtil = {
     localStorage.removeItem(CoreUtil.WALLETCONNECT_DEEPLINK_CHOICE)
   },
 }
+export async function initWalletConnect() {
+  const signClient = await SignClient.init({
+    projectId: '08fc834cc8959c233c8514026f6f4834',
+
+    metadata: {
+      name: 'Example Dapp',
+      description: 'Example Dapp',
+      url: '#',
+      icons: ['https://walletconnect.com/walletconnect-logo.png'],
+    },
+  })
+  console.log(signClient, 'from utils')
+
+  return signClient
+}

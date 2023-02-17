@@ -23,6 +23,14 @@ export class LazerpayModalContainer extends LitElement {
     this.setupFontFaces()
     console.log(ClientCtrl.client().getConnectors(), 'yo')
   }
+  private async initializeWallet() {
+    this.client = await initWalletConnect()
+  }
+
+  private async connectWallet() {
+    console.log(this.client, 'client ')
+    await WalletConnectCtrl.handleConnection(this.client)
+  }
 
   private onCloseModal(event: PointerEvent) {
     if (event.target === event.currentTarget) {
