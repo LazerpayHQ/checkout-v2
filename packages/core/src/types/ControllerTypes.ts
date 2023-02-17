@@ -1,4 +1,5 @@
-import type { Chain, EthereumClient } from '../Ethereum/client'
+import type { Chain } from '@wagmi/core'
+import type { EthereumClient } from '../Ethereum/client'
 // -- ModalCtrl --------------------------------------- //
 export interface ModalCtrlState {
   open: boolean

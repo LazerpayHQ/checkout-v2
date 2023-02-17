@@ -1,5 +1,5 @@
 import { proxy, subscribe as valtioSub } from 'valtio/vanilla'
-import type { OptionsCtrlState } from '../types/controllerTypes'
+import type { OptionsCtrlState } from '../types/ControllerTypes'
 import { ClientCtrl } from './ClientCtrl'
 
 // -- initial state ------------------------------------------------ //
@@ -78,10 +78,6 @@ export const OptionsCtrl = {
     state.isConnected = isConnected
   },
 
-  setProfileLoading(profileLoading: OptionsCtrlState['profileLoading']) {
-    state.profileLoading = profileLoading
-  },
-
   setBalanceLoading(balanceLoading: OptionsCtrlState['balanceLoading']) {
     state.balanceLoading = balanceLoading
   },
@@ -98,18 +94,12 @@ export const OptionsCtrl = {
     state.isUiLoaded = isUiLoaded
   },
 
-  resetEnsProfile() {
-    state.profileName = undefined
-    state.profileAvatar = undefined
-  },
-
   resetBalance() {
     state.balance = undefined
   },
 
   resetAccount() {
     state.address = undefined
-    OptionsCtrl.resetEnsProfile()
     OptionsCtrl.resetBalance()
   },
 }

@@ -3,15 +3,13 @@ import {
   connect,
   disconnect,
   fetchBalance,
-  fetchEnsAvatar,
-  fetchEnsName,
   getAccount,
   getNetwork,
   switchNetwork,
   watchAccount,
   watchNetwork,
 } from '@wagmi/core'
-import type { ConnectorId } from './types/clientTypes'
+import type { ConnectorId } from './types'
 
 export class EthereumClient {
   private readonly wagmi = {} as Client

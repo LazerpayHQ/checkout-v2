@@ -1,27 +1,74 @@
-import type { ListingResponse, PageParams } from '../types/controllerTypes'
+import type { ListingResponse, PageParams } from './types/ControllerTypes'
 
-// -- constants ------------------------------------------------------- //
-export const NAMESPACE = 'eip155'
-export const EXPLORER_API = 'https://explorer-api.walletconnect.com'
+export const CoreUtil = {
+  WALLETCONNECT_DEEPLINK_CHOICE: 'WALLETCONNECT_DEEPLINK_CHOICE',
 
-function formatParams(params: PageParams) {
-  const stringParams = Object.fromEntries(
-    Object.entries(params)
-      .filter(([_, value]) => typeof value !== 'undefined' && value !== null && value !== '')
-      .map(([key, value]) => [key, value.toString()])
-  )
+  isHttpUrl(url: string) {
+    return url.startsWith('http://') || url.startsWith('https://')
+  },
 
-  return new URLSearchParams(stringParams).toString()
-}
+  formatNativeUrl(appUrl: string, wcUri: string, name: string): string {
+    if (CoreUtil.isHttpUrl(appUrl)) {
+      return this.formatUniversalUrl(appUrl, wcUri, name)
+    }
+    let safeAppUrl = appUrl
+    if (!safeAppUrl.includes('://')) {
+      safeAppUrl = appUrl.replaceAll('/', '').replaceAll(':', '')
+      safeAppUrl = `${safeAppUrl}://`
+    }
+    this.setWalletConnectDeepLink(safeAppUrl, name)
+    const encodedWcUrl = encodeURIComponent(wcUri)
 
-export async function fetchWallets(projectId: string, params: PageParams): Promise<ListingResponse> {
-  const urlParams = formatParams(params)
-  const fetcUrl = `${EXPLORER_API}/v3/wallets?projectId=${projectId}&${urlParams}`
-  const fetched = await fetch(fetcUrl)
+    return `${safeAppUrl}wc?uri=${encodedWcUrl}`
+  },
+  formatUniversalUrl(appUrl: string, wcUri: string, name: string): string {
+    if (!CoreUtil.isHttpUrl(appUrl)) {
+      return this.formatNativeUrl(appUrl, wcUri, name)
+    }
+    let plainAppUrl = appUrl
+    if (appUrl.endsWith('/')) {
+      plainAppUrl = appUrl.slice(0, -1)
+    }
+    this.setWalletConnectDeepLink(plainAppUrl, name)
+    const encodedWcUrl = encodeURIComponent(wcUri)
 
-  return fetched.json()
-}
+    return `${plainAppUrl}/wc?uri=${encodedWcUrl}`
+  },
+  formatParams(params: PageParams) {
+    const stringParams = Object.fromEntries(
+      Object.entries(params)
+        .filter(([_, value]) => typeof value !== 'undefined' && value !== null && value !== '')
+        .map(([key, value]) => [key, value.toString()])
+    )
 
-export function formatImageUrl(projectId: string, imageId: string) {
-  return `${EXPLORER_API}/v3/logo/lg/${imageId}?projectId=${projectId}`
+    return new URLSearchParams(stringParams).toString()
+  },
+
+  async fetchWallets(projectId: string, params: PageParams): Promise<ListingResponse> {
+    const urlParams = this.formatParams(params)
+    const fetcUrl = `https://explorer-api.walletconnect.com/v3/wallets?projectId=${projectId}&${urlParams}`
+    const fetched = await fetch(fetcUrl)
+
+    return fetched.json()
+  },
+
+  formatImageUrl(projectId: string, imageId: string) {
+    return `https://explorer-api.walletconnect.com/v3/logo/lg/${imageId}?projectId=${projectId}`
+  },
+  openHref(href: string, target = '_self') {
+    window.open(href, target, 'noreferrer noopener')
+  },
+  setWalletConnectDeepLink(href: string, name: string) {
+    localStorage.setItem(CoreUtil.WALLETCONNECT_DEEPLINK_CHOICE, JSON.stringify({ href, name }))
+  },
+
+  setWalletConnectAndroidDeepLink(wcUri: string) {
+    const [href] = wcUri.split('?')
+
+    localStorage.setItem(CoreUtil.WALLETCONNECT_DEEPLINK_CHOICE, JSON.stringify({ href, name: 'Android' }))
+  },
+
+  removeWalletConnectDeepLink() {
+    localStorage.removeItem(CoreUtil.WALLETCONNECT_DEEPLINK_CHOICE)
+  },
 }

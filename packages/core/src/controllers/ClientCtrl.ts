@@ -1,5 +1,5 @@
 import { proxy } from 'valtio/vanilla'
-import type { ClientCtrlState } from '../types/controllerTypes'
+import type { ClientCtrlState } from '../types/ControllerTypes'
 import { OptionsCtrl } from './OptionsCtrl'
 
 // -- initial state ------------------------------------------------ //

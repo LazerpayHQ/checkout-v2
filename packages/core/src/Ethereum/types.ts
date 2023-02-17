@@ -1,3 +1,4 @@
+import type { Chain } from '@wagmi/core'
 export interface WalletConnectProviderOpts {
   projectId: string
 }
