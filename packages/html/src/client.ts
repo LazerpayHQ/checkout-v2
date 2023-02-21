@@ -25,7 +25,9 @@ export class LazerpayCheckout {
       connectors: [...modalConnectors({ appName: 'lazerpayModal', chains, projectId })],
       provider,
     })
+    console.log(provider, 'provider instance')
     const ethereumClient = new EthereumClient(wagmiClient, chains)
+    console.log(ethereumClient, 'client')
 
     ClientCtrl.setEthereumClient(ethereumClient)
     this.initalizeUi()

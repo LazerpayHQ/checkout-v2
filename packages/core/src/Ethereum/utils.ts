@@ -32,7 +32,7 @@ export function walletConnectProvider({ projectId }: WalletConnectProviderOpts) 
 
 // -- connectors ------------------------------------------------------ //
 export function modalConnectors({ appName, chains, version, projectId }: ModalConnectorsOpts) {
-  const walletConnectVersion = version ?? '1'
+  const walletConnectVersion = version ?? '2'
   if (walletConnectVersion === '2' && !projectId) {
     throw new Error('modalConnectors() requires projectId for WalletConnect version 2')
   }
