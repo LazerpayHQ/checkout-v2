@@ -65,6 +65,10 @@ export interface ClientCtrlState {
   initialized: boolean
   ethereumClient?: EthereumClient
 }
+// -- ApiCtrl ---------------- //
+export interface ApiCtrlState {
+  apiKey: string
+}
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
   selectedChain?: Chain

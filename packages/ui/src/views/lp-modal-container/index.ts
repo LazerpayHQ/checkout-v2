@@ -27,7 +27,10 @@ export class LazerpayModalContainer extends LitElement {
   }
 
   private async connectWallet() {
-    await UiUtil.handleConnectorConnection('injected')
+    await UiUtil.handleConnectorConnection('rainbow')
+  }
+  private async disconnectWallet() {
+    await ClientCtrl.client().disconnect()
   }
 
   private onCloseModal(event: PointerEvent) {
