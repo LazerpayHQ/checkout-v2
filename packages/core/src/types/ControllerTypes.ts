@@ -67,6 +67,7 @@ export interface ClientCtrlState {
 }
 // -- ApiCtrl ---------------- //
 export interface ApiCtrlState {
+  isTestnet: boolean
   apiKey: string
 }
 // -- OptionsCtrl --------------------------------------- //
