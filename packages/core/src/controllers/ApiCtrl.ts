@@ -26,7 +26,7 @@ export const ApiCtrl = {
   async initiatePayment() {
     // Logic for initiating payment
   },
-  async confirmPayment() {
+  async verifyPayment() {
     // Logic for confirming payment
   },
 
