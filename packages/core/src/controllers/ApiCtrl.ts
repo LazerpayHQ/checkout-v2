@@ -51,7 +51,7 @@ export const ApiCtrl = {
     return fetched.json()
   },
 
-  async initiatePayment() {
+  async initiatePayment(paymentChannel: string) {
     // Logic for initiating payment
     const fetched = await fetch(`${API_URL}/transaction/initialize`, {
       method: 'POST',
@@ -61,6 +61,7 @@ export const ApiCtrl = {
       },
       body: JSON.stringify({
         ...state.payloadData,
+        paymentChannel,
       }),
     })
 
@@ -74,7 +75,7 @@ export const ApiCtrl = {
     const urlParams = new URLSearchParams(state.initializePayload.address).toString()
     const url = `${API_URL}/transaction/verify${urlParams}`
     const fetched = await fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': state.apiKey,
