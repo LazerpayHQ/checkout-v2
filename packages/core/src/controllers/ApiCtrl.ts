@@ -71,6 +71,19 @@ export const ApiCtrl = {
   },
   async verifyPayment() {
     // Logic for confirming payment
+    const urlParams = new URLSearchParams(state.initializePayload.address).toString()
+    const url = `${API_URL}/transaction/verify${urlParams}`
+    const fetched = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': state.apiKey,
+      },
+    })
+
+    console.log(fetched)
+
+    return fetched.json()
   },
 
   setPayloadData(payload: ApiCtrlState['payloadData']) {
