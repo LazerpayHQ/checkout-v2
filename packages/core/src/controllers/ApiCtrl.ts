@@ -18,7 +18,7 @@ export const ApiCtrl = {
   setApiKey(apiKey: string) {
     console.log(':::::::::', apiKey)
     // Set api key globally and store session in OptionsCtrl
-    const IS_TESTNET = false //apiKey.includes('test')
+    const IS_TESTNET = apiKey.includes('test')
     state.isTestnet = IS_TESTNET
     state.apiKey = apiKey
   },
@@ -90,6 +90,8 @@ export const ApiCtrl = {
 
   setPayloadData(payload: IPayload) {
     state.payloadData = payload
+
+    console.log(state.payloadData, 'payload')
   },
   getCurrency() {
     if (state.payloadData?.currency) {

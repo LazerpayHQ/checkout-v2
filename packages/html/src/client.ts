@@ -29,34 +29,25 @@ export class LazerpayCheckout {
    *
    * TODO: Should setup WalletConnect
    */
-  public constructor(
-    apiKey: string,
-    customerEmail: string,
-    customerName: string,
-    amount: number | string,
-    reference: string,
-    metadata?: object,
-    acceptPartialPayment?: false,
-    currency?: string,
-    businessLogo?: string,
-    paymentButtonId?: string,
+
+  public constructor(data: {
+    apiKey: string
+    customerEmail: string
+    customerName: string
+    amount: number | string
+    reference: string
+    metadata?: object
+    acceptPartialPayment?: false
+    currency?: string
+    businessLogo?: string
+    paymentButtonId?: string
     paymentLinkId?: string
-  ) {
+  }) {
+    console.log('API KEYs', data.apiKey)
     // Set payload data and apikey
-    ApiCtrl.setApiKey(customerEmail)
-    console.log('API KEY', apiKey)
-    ApiCtrl.setPayloadData({
-      customerEmail,
-      customerName,
-      amount,
-      reference,
-      metadata,
-      acceptPartialPayment,
-      currency,
-      businessLogo,
-      paymentButtonId,
-      paymentLinkId,
-    })
+    ApiCtrl.setApiKey(data.apiKey)
+
+    ApiCtrl.setPayloadData({ ...data })
     const projectId = '08fc834cc8959c233c8514026f6f4834'
     const { chains, provider } = configureChains(
       [mainnet, goerli, bscTestnet, bsc, polygon, polygonMumbai],
