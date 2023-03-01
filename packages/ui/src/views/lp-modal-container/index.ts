@@ -25,7 +25,7 @@ export class LazerpayModalContainer extends LitElement {
   }
 
   protected firstUpdated() {
-    this.connectWallet()
+    // this.connectWallet()
   }
 
   private async connectWallet() {

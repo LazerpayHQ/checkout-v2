@@ -1,48 +1,58 @@
+/* eslint-disable func-style */
+/* eslint-disable newline-before-return */
 import { html, LitElement } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { SvgIcons } from '../../utils/SvgUtil'
 import styles from './style.css'
 import '../../components/modal'
+import type { INetworkResponse, INetworks } from '@lazerpay-checkout/core/src/types/ControllerTypes'
+import { ApiCtrl } from '@lazerpay-checkout/core'
 
-const items = [
-  {
-    icon: 'BNB',
-    title: 'BNB Smart Chain (BEP20)',
-    description: 'Estimated confirmation time = 5 mins',
-  },
-  {
-    icon: 'ETH',
-    title: 'Ethereum (ERC20)',
-    description: 'Estimated confirmation time = 5 mins',
-  },
-  {
-    icon: 'TRON',
-    title: 'Tron (TRC20)',
-    description: 'Estimated confirmation time = 7 mins',
-  },
-  {
-    icon: 'MATIC',
-    title: 'Polygon - MATIC',
-    description: 'Estimated confirmation time = 5 mins',
-  },
-]
+const items = (symbol: string) => {
+  switch (symbol) {
+    case 'BNB':
+      return 'BNB Smart Chain (BEP20)'
+    case 'ETH':
+      return 'Ethereum (ERC20)'
+    case 'MATIC':
+      return 'Polygon (Matic)'
+    default:
+      return 'BNB Smart Chain (BEP20)'
+  }
+}
 
 @customElement('lp-checkout-transfer-second-step')
 export class LazerpayCheckoutTransferSecondStep extends LitElement {
   public static styles = [styles]
 
+  // -- lifecycle ------------------------------------------- //
+  protected firstUpdated() {
+    this.getNetworks()
+  }
+
   // -- state & properties ------------------------------------------- //
-  @property() public next: () => void = () => {}
+  @property() public next: (item?: object) => void = () => {}
   @state() private modalOpen = false
+  @state() public networks: INetworks[] = []
 
   private toggleModal() {
     this.modalOpen = !this.modalOpen
+  }
+
+  private readonly getNetworks = async () => {
+    const response: INetworkResponse = await ApiCtrl.getNetworks()
+    this.networks = response.data
   }
 
   // -- render ------------------------------------------------------- //
   protected render() {
     const modalContent =
       'Some cryptocurrencies may be built on more than one network. To protect your funds, it’s important to select the right one. For cryptocurrencies with just one network, the default network has been preselected for you.'
+
+    if (this.networks.length === 0) {
+      return html`<div class="lp-transfer__loader"><lp-checkout-loader full=${true}></lp-checkout-loader></div>`
+    }
+
     return html`
       <div>
         <lp-checkout-modal
@@ -58,14 +68,14 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
             <div class="lp-transfer__sub">Why select a network?</div>
           </div>
           <div class="lp-transfer__box-wrapper">
-            ${items.map(
+            ${this.networks.map(
               (item) =>
                 html`
                   <lp-checkout-box
-                    @click=${this.next}
-                    .description=${item.description}
-                    .icon=${item.icon}
-                    .title=${item.title}
+                    @click=${() => this.next(item)}
+                    .description=${'Estimated confirmation time = 5 mins'}
+                    .icon=${item.symbol}
+                    .title=${items(item.symbol)}
                   ></lp-checkout-box>
                 `
             )}

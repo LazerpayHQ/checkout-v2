@@ -1,16 +1,31 @@
 /* eslint-disable func-style */
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import styles from './style.css'
 import { classMap } from 'lit/directives/class-map.js'
+import { IPayload } from '@lazerpay-checkout/core/src/types/ControllerTypes'
+import { defaultPayload } from '@lazerpay-checkout/core/src/types/defaultValues'
+import { ApiCtrl } from '@lazerpay-checkout/core'
+import { formatPrice } from '../../utils/methods'
 
 @customElement('lp-checkout-header')
 export class LazerpayCheckoutHeader extends LitElement {
   public static styles = [styles]
 
+  // -- lifecycle ---------------------------------------------------- //
+  protected firstUpdated() {
+    this.getPayload()
+  }
+
   // -- state & properties ------------------------------------------- //
   @property() public activeHeaderStep = 1
-  @property() public activeTab: number = 0
+  @property() public activeTab = 0
+  @state() private payload: IPayload = defaultPayload
+
+  private readonly getPayload = () => {
+    const payload = ApiCtrl.getPayloadData()
+    this.payload = payload
+  }
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -25,12 +40,12 @@ export class LazerpayCheckoutHeader extends LitElement {
     return html`
       <div class="lp-header">
         <div class="lp-header__wrapper">
-          <h1 class="lp-header__title">Lazerpay Ventures</h1>
+          <h1 class="lp-header__title">${this.payload.businessName}</h1>
           <div class="lp-header__detail">
             <div class="lp-header-text">falolasheyie@gmail.com</div>
             <div class="lp-header__detail-inner">
               <div class="lp-header-text">Amount:</div>
-              <div class="lp-header-amount">USD 231.30</div>
+              <div class="lp-header-amount">${this.payload.currency} ${formatPrice(this.payload.amount)}</div>
             </div>
           </div>
         </div>

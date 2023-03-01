@@ -3,7 +3,7 @@ import { LazerpayCheckout } from '@lazerpay-checkout/html'
 
 const paymentButton = document.getElementById('payment-button')
 const data = {
-  apiKey: 'pk_test_5f5b5c5c-5f5b5c5c-5f5b5c5c-5f5b5c5c',
+  apiKey: 'pk_live_NUulPuy1UjqQOD6O6XnEi17S9QhLCfSjalIZQnvJlmGjVvBDgY',
   customerEmail: 'jsj@gmail.com',
   customerName: 'Justice',
   amount: '2000',
@@ -14,6 +14,7 @@ const data = {
   businessLogo: '',
   paymentButtonId: '',
   paymentLinkId: '',
+  businessName: "Justice's Store",
 }
 new LazerpayCheckout(data)
 paymentButton.addEventListener('click', () => {

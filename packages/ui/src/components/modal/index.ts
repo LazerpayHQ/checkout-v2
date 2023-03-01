@@ -23,7 +23,6 @@ export class LazerpayCheckoutModal extends LitElement {
       'lp-modal__error': this.errorModal,
     }
     const btnTitle = 'Ok, I understand'
-    console.log(this.title, this.content)
 
     return html`
       <div class="lp-modal ${classMap(classes)}">

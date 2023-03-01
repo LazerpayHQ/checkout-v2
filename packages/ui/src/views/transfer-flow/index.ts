@@ -1,21 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
+
 import styles from './style.css'
 import './first-step'
 import './second-step'
 import './third-step'
 import './fourth-step'
+import { ApiCtrl } from '@lazerpay-checkout/core'
 
 @customElement('lp-checkout-transfer-flow')
 export class LazerpayCheckoutTransferFlow extends LitElement {
   public static styles = [styles]
 
-  // -- state & properties ------------------------------------------- //
-  @state() public step: number = 1
+  // -- lifecycle ------------------------------------------- //
+  public constructor() {
+    super()
+  }
 
-  public next = () => {
-    this.step = this.step + 1
+  // -- state & properties ------------------------------------------- //
+  @state() public step = 1
+
+  public next = (data?: any) => {
+    if (this.step === 1) {
+      ApiCtrl.setCoin(data)
+    }
+    if (this.step === 2) {
+      ApiCtrl.setNetwork(data)
+    }
+    this.step += 1
     this.nextHeader()
   }
 

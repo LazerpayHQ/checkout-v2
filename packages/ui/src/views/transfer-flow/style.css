@@ -244,6 +244,22 @@
   text-decoration: underline;
 }
 
+.lp-transfer__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 330px;
+  width: 100%;
+}
+
+.lp-transfer__hide {
+  opacity: 0;
+}
+
+.hide {
+  display: none;
+}
+
 @media screen and (max-width: 680px) {
   .lp-transfer__process-text-footer {
     font-size: 12px;
@@ -256,5 +272,8 @@
     line-height: 21px;
     max-width: 70%;
     margin-top: 14px;
+  }
+  .lp-transfer__loader {
+    height: 100%;
   }
 }

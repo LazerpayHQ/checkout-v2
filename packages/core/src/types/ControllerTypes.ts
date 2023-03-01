@@ -100,12 +100,17 @@ export interface IPayload {
   businessLogo?: string
   paymentButtonId?: string
   paymentLinkId?: string
+  businessName: string
 }
 export interface ApiCtrlState {
   isTestnet?: boolean
   apiKey: string
   initializePayload: IInitializePayload | undefined
-  payloadData: IPayload | undefined
+  payloadData: IPayload
+  coins: ICoins[]
+  networks: INetworks[]
+  selectedCoin: ICoins
+  selectedNetwork: INetworks
 }
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
@@ -122,4 +127,69 @@ export interface OptionsCtrlState {
   isUiLoaded: boolean
   balanceLoading?: boolean
   balance?: { amount: string; symbol: string }
+}
+
+export interface ICoins {
+  address: string
+  blockchain: string
+  decimal: number
+  id: string
+  logo: string
+  name: string
+  network: string
+  status: string
+  symbol: string
+}
+
+export interface INetworks {
+  id: string
+  logo: string
+  name: string
+  network: string
+  symbol: string
+  tag: string
+  isActive: boolean
+}
+
+export interface ICoinResponse {
+  data: ICoins[]
+  message: string
+  status: string
+  statusCode: number
+}
+
+export interface INetworkResponse {
+  data: INetworks[]
+  message: string
+  status: string
+  statusCode: number
+}
+
+export interface IInitializeResponse {
+  data: IInitialize
+  message: string
+  status: string
+  statusCode: number
+}
+
+export interface IInitialize {
+  acceptPartialPayment: boolean
+  address: string
+  blockchain: string
+  businessEmail: string
+  businessLogo: string
+  businessName: string
+  channel: string
+  coin: string
+  cryptoAmount: number
+  cryptoRate: number
+  currency: string
+  customerEmail: string
+  customerName: string
+  feeInCrypto: number
+  fiatAmount: number
+  fiatRate: number
+  id: string
+  network: string
+  reference: string
 }

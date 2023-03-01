@@ -43,7 +43,6 @@ export class LazerpayCheckout {
     paymentButtonId?: string
     paymentLinkId?: string
   }) {
-    console.log('API KEYs', data.apiKey)
     // Set payload data and apikey
     ApiCtrl.setApiKey(data.apiKey)
 
@@ -58,9 +57,7 @@ export class LazerpayCheckout {
       connectors: [...modalConnectors({ appName: 'lazerpayModal', chains, projectId })],
       provider,
     })
-    console.log(provider, 'provider instance')
     const ethereumClient = new EthereumClient(wagmiClient, chains)
-    console.log(ethereumClient, 'client')
 
     ClientCtrl.setEthereumClient(ethereumClient)
     this.initalizeUi()

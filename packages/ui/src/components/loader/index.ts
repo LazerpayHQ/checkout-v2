@@ -1,17 +1,10 @@
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement } from 'lit/decorators.js'
 import styles from './style.css'
 
 @customElement('lp-checkout-loader')
 export class LazerpayCheckoutLoader extends LitElement {
   public static styles = [styles]
-
-  // -- state & properties ------------------------------------------- //
-  @property() public primary: boolean = false
-  @property() public secondary: boolean = false
-  @property() public icon: string = ''
-  @property() public title: string = ''
-  @property() public description: string = ''
 
   // -- render ------------------------------------------------------- //
   protected render() {
