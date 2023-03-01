@@ -88,24 +88,24 @@ export interface IInitializePayload {
   channel: string
   blockchain: string
 }
+
+export interface IPayload {
+  customerEmail: string
+  customerName: string
+  amount: number | string
+  reference: string
+  metadata?: object
+  acceptPartialPayment?: boolean
+  currency?: string
+  businessLogo?: string
+  paymentButtonId?: string
+  paymentLinkId?: string
+}
 export interface ApiCtrlState {
   isTestnet?: boolean
   apiKey: string
   initializePayload: IInitializePayload | undefined
-  payloadData:
-    | {
-        customerEmail: string
-        customerName: string
-        amount: number | string
-        reference: string
-        metadata?: object
-        acceptPartialPayment?: boolean
-        currency?: string
-        businessLogo?: string
-        paymentButtonId?: string
-        paymentLinkId?: string
-      }
-    | undefined
+  payloadData: IPayload | undefined
 }
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
