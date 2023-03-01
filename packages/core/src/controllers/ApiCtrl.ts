@@ -6,12 +6,15 @@ import type { ApiCtrlState } from '../types/ControllerTypes'
 const state = proxy<ApiCtrlState>({
   isTestnet: false,
   apiKey: undefined,
+  payloadData: undefined,
+  initializePayload: undefined,
 })
 
 const API_URL = 'https://dev-api.lazerpay.engineering/api/v1'
 
 // -- controller -- As function to enable correct ssr handling
 export const ApiCtrl = {
+  state,
   setApiKey(apiKey: ApiCtrlState['apiKey']) {
     // Set api key globally and store session in OptionsCtrl
     const IS_TESTNET = apiKey.includes('test')
@@ -50,11 +53,53 @@ export const ApiCtrl = {
 
   async initiatePayment() {
     // Logic for initiating payment
+    const fetched = await fetch(`${API_URL}/transaction/initialize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': state.apiKey,
+      },
+      body: JSON.stringify({
+        ...state.payloadData,
+      }),
+    })
+
+    console.log(fetched)
+    state.initializePayload = fetched.json()
+
+    return fetched.json()
   },
   async verifyPayment() {
     // Logic for confirming payment
   },
 
+  setPayloadData(payload: ApiCtrlState['payloadData']) {
+    state.payloadData = payload
+  },
+  getCurrency() {
+    if (state.payloadData.currency) {
+      return {
+        NGN: '₦',
+        ngn: '₦',
+        AED: 'د.إ',
+        aed: 'د.إ',
+        USD: '$',
+        usd: '$',
+        GBP: '£',
+        gpb: '£',
+        EUR: '€',
+        eur: '€',
+        GHS: 'gh₵',
+        ghs: 'gh₵',
+        UGX: 'USh',
+        ugx: 'USh',
+        KES: 'ksh',
+        kes: 'ksh',
+      }[state.payloadData.currency]
+    }
+
+    return '$'
+  },
   isTestnet() {
     if (state.apiKey) {
       return state.isTestnet
