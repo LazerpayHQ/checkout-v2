@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import styles from './style.css'
