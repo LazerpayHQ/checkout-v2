@@ -43,7 +43,8 @@ export class LazerpayCheckout {
     paymentLinkId?: string
   ) {
     // Set payload data and apikey
-    ApiCtrl.setApiKey(apiKey)
+    ApiCtrl.setApiKey(customerEmail)
+    console.log('API KEY', apiKey)
     ApiCtrl.setPayloadData({
       customerEmail,
       customerName,

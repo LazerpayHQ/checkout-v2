@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { proxy } from 'valtio/vanilla'
-import type { ApiCtrlState, IInitializePayload } from '../types/ControllerTypes'
+import type { ApiCtrlState, IInitializePayload, IPayload } from '../types/ControllerTypes'
 
 // -- initial state ------------------------------------------------ //
 const state = proxy<ApiCtrlState>({
@@ -15,9 +15,10 @@ const API_URL = 'https://dev-api.lazerpay.engineering/api/v1'
 // -- controller -- As function to enable correct ssr handling
 export const ApiCtrl = {
   state,
-  setApiKey(apiKey: ApiCtrlState['apiKey']) {
+  setApiKey(apiKey: string) {
+    console.log(':::::::::', apiKey)
     // Set api key globally and store session in OptionsCtrl
-    const IS_TESTNET = apiKey.includes('test')
+    const IS_TESTNET = false //apiKey.includes('test')
     state.isTestnet = IS_TESTNET
     state.apiKey = apiKey
   },
@@ -87,7 +88,7 @@ export const ApiCtrl = {
     return fetched.json()
   },
 
-  setPayloadData(payload: ApiCtrlState['payloadData']) {
+  setPayloadData(payload: IPayload) {
     state.payloadData = payload
   },
   getCurrency() {
