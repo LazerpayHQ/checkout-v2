@@ -58,6 +58,7 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
   @property() public next: () => void = () => {}
   @state() private payload: IInitialize = defaultInitResponse
   @state() private network: INetworks = defaultNetwork
+  @state() private copied = false
 
   private readonly getPayload = async () => {
     const initPayload: IInitializeResponse = await ApiCtrl.initiateTransaction('transfer')
@@ -66,6 +67,18 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
     this.payload = initPayload.data
     this.network = networkPayload
     qrCode.update({ data: initPayload.data.address })
+  }
+
+  private readonly copyContent = async () => {
+    try {
+      await navigator.clipboard.writeText(this.payload.address)
+      this.copied = true
+      setTimeout(() => {
+        this.copied = false
+      }, 2000)
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
   }
 
   // -- render ------------------------------------------------------- //
@@ -101,9 +114,9 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
               <div class="lp-transfer__address-text">Address</div>
               <div class="lp-transfer__address">${truncateAddress(this.payload.address)}</div>
             </div>
-            <div class="lp-transfer__copy-wrapper">
-              ${SvgIcons('COPY')}
-              <div class="lp-transfer__copy-text">Copy</div>
+            <div @click=${this.copyContent} class="lp-transfer__copy-wrapper">
+              ${SvgIcons(this.copied ? 'COPIED' : 'COPY')}
+              <div class="lp-transfer__copy-text">${this.copied ? 'Copied' : 'Copy'}</div>
             </div>
           </div>
           <div class="lp-transfer__footer">

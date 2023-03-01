@@ -1,3 +1,5 @@
+/* eslint-disable func-style */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { html } from 'lit'
 import 'lit-icon'
 
@@ -184,6 +186,18 @@ export const SvgIcons = (icon: string, height?: string, width?: string) => {
           stroke-linejoin="round"
         />
       </svg> `
+    case 'COPIED':
+      return html`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="#FBFBFB" />
+        <path
+          d="M7.33398 11.9993L10.6673 15.3327L17.334 8.66602"
+          stroke="#125BC9"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" stroke="#125BC9" />
+      </svg>`
     case 'NOTICE':
       return html`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_788_63962)">

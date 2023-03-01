@@ -18,5 +18,5 @@ const data = {
 }
 new LazerpayCheckout(data)
 paymentButton.addEventListener('click', () => {
-  const lazerpayCheckout = new LazerpayCheckout(data)
+  new LazerpayCheckout(data)
 })

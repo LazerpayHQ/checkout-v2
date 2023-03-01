@@ -11,25 +11,6 @@ import {
 } from '@lazerpay-checkout/core'
 
 export class LazerpayCheckout {
-  /**
-   * TODO: Should accept API Key and PayloadData as parameter
-   * /*
-   *   {
-   *     customerEmail: undefined,
-   *     customerName: undefined,
-   *     amount: undefined,
-   *     reference: undefined,
-   *     metadata: undefined,
-   *     acceptPartialPayment: false,
-   *     currency: undefined,
-   *     businessLogo: undefined,
-   *     paymentButtonId: undefined,
-   *     paymentLinkId: undefined,
-   *   },
-   *
-   * TODO: Should setup WalletConnect
-   */
-
   public constructor(data: {
     apiKey: string
     customerEmail: string
@@ -42,6 +23,7 @@ export class LazerpayCheckout {
     businessLogo?: string
     paymentButtonId?: string
     paymentLinkId?: string
+    businessName: string
   }) {
     // Set payload data and apikey
     ApiCtrl.setApiKey(data.apiKey)
