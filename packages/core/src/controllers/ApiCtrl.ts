@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import { proxy } from 'valtio/vanilla'
-import type { ApiCtrlState } from '../types/ControllerTypes'
+import type { ApiCtrlState, IInitializePayload } from '../types/ControllerTypes'
 
 // -- initial state ------------------------------------------------ //
 const state = proxy<ApiCtrlState>({
   isTestnet: false,
-  apiKey: undefined,
+  apiKey: '',
   payloadData: undefined,
   initializePayload: undefined,
 })
@@ -66,13 +66,13 @@ export const ApiCtrl = {
     })
 
     console.log(fetched)
-    state.initializePayload = fetched.json()
+    state.initializePayload = fetched.json() as unknown as IInitializePayload
 
     return fetched.json()
   },
   async verifyPayment() {
     // Logic for confirming payment
-    const urlParams = new URLSearchParams(state.initializePayload.address).toString()
+    const urlParams = new URLSearchParams(state.initializePayload?.address).toString()
     const url = `${API_URL}/transaction/verify${urlParams}`
     const fetched = await fetch(url, {
       method: 'GET',
@@ -91,7 +91,7 @@ export const ApiCtrl = {
     state.payloadData = payload
   },
   getCurrency() {
-    if (state.payloadData.currency) {
+    if (state.payloadData?.currency) {
       return {
         NGN: '₦',
         ngn: '₦',

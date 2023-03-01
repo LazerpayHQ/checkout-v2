@@ -66,42 +66,46 @@ export interface ClientCtrlState {
   ethereumClient?: EthereumClient
 }
 // -- ApiCtrl ---------------- //
+
+export interface IInitializePayload {
+  id: string
+  reference: string
+  businessName: string
+  businessEmail: string
+  businessLogo: string
+  customerName: string
+  customerEmail: string
+  address: string
+  coin: string
+  cryptoAmount: number
+  currency: string
+  fiatAmount: number
+  feeInCrypto: number
+  network: string
+  acceptPartialPayment: boolean
+  fiatRate: number
+  cryptoRate: number
+  channel: string
+  blockchain: string
+}
 export interface ApiCtrlState {
   isTestnet?: boolean
   apiKey: string
-  initializePayload: {
-    id: string
-    reference: string
-    businessName: string
-    businessEmail: string
-    businessLogo: string
-    customerName: string
-    customerEmail: string
-    address: string
-    coin: string
-    cryptoAmount: number
-    currency: string
-    fiatAmount: number
-    feeInCrypto: number
-    network: string
-    acceptPartialPayment: boolean
-    fiatRate: number
-    cryptoRate: number
-    channel: string
-    blockchain: string
-  }
-  payloadData: {
-    customerEmail: string
-    customerName: string
-    amount: number | string
-    reference: string
-    metadata?: object
-    acceptPartialPayment?: boolean
-    currency?: string
-    businessLogo?: string
-    paymentButtonId?: string
-    paymentLinkId?: string
-  }
+  initializePayload: IInitializePayload | undefined
+  payloadData:
+    | {
+        customerEmail: string
+        customerName: string
+        amount: number | string
+        reference: string
+        metadata?: object
+        acceptPartialPayment?: boolean
+        currency?: string
+        businessLogo?: string
+        paymentButtonId?: string
+        paymentLinkId?: string
+      }
+    | undefined
 }
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
