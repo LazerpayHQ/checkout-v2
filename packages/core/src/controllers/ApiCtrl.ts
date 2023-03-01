@@ -8,6 +8,8 @@ const state = proxy<ApiCtrlState>({
   apiKey: undefined,
 })
 
+const API_URL = 'https://dev-api.lazerpay.engineering/api/v1'
+
 // -- controller -- As function to enable correct ssr handling
 export const ApiCtrl = {
   setApiKey(apiKey: ApiCtrlState['apiKey']) {
@@ -18,9 +20,32 @@ export const ApiCtrl = {
   },
   async getNetwork() {
     // Logic for getting network
+    const fetched = await fetch(`${API_URL}/blockchains`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': state.apiKey,
+      },
+    })
+
+    console.log(fetched)
+
+    return fetched.json()
   },
-  async getCoin() {
+  async getCoin(blockchain: string) {
     // Logic for getting coins
+    const urlParams = new URLSearchParams({ blockchain }).toString()
+    const url = `${API_URL}/coins${urlParams}`
+    const fetched = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': state.apiKey,
+      },
+    })
+    console.log(fetched)
+
+    return fetched.json()
   },
 
   async initiatePayment() {
