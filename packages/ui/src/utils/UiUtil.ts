@@ -48,11 +48,14 @@ export const UiUtil = {
       console.log(id)
       const { selectedChain } = OptionsCtrl.state
       console.log(selectedChain, 'selectedChain')
-      await ClientCtrl.client().connectConnector(id, selectedChain?.id)
+
+      const data = await ClientCtrl.client().connectConnector(id)
+      console.log(data)
     } catch (error) {
       if (onError) {
         onError()
       } else {
+        console.log(error)
         throw new Error(error)
       }
     }

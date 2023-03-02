@@ -16,7 +16,7 @@ const state = proxy<ApiCtrlState>({
   selectedNetwork: defaultNetwork,
 })
 
-const API_URL = 'https://dev-api.lazerpay.engineering/api/v1'
+const API_URL = 'https://dev-api.lazerpay.engineering/api/v2'
 
 // -- controller -- As function to enable correct ssr handling
 export const ApiCtrl = {
