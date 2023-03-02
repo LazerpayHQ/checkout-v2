@@ -112,6 +112,25 @@ export interface ApiCtrlState {
   selectedCoin: ICoins
   selectedNetwork: INetworks
 }
+
+export interface WalletCtrlState {
+  allWallets?: Wallet[]
+  recommendedWallets?: Wallet[]
+  selectedWallet?: Wallet
+  defaultChain?: number
+  selectedChain?: number
+}
+export interface Wallet {
+  name: string
+  id?: string
+  image?: string
+  links?: {
+    native?: string
+    universal?: string
+  }
+  isMobile?: boolean
+  isInjected?: boolean
+}
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
   selectedChain?: Chain

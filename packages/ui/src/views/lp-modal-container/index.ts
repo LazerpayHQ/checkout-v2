@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
-import { ClientCtrl } from '@lazerpay-checkout/core'
+import { ClientCtrl, WalletConnectCtrl } from '@lazerpay-checkout/core'
 import { UiUtil } from '../../utils/UiUtil'
 import styles from './style.css'
 import FONT_FACES from '../../assets/fonts/index'
@@ -22,20 +22,13 @@ export class LazerpayModalContainer extends LitElement {
     super()
     this.open = true
     this.setupFontFaces()
-    this.connectWallet()
   }
-
   protected firstUpdated() {
-    this.connectWallet()
+    console.log(this.getWallets())
   }
-
-  private async connectWallet() {
-    await UiUtil.handleConnectorConnection('walletConnect')
+  private async getWallets() {
+    await WalletConnectCtrl.getRecomendedWallets()
   }
-  private async disconnectWallet() {
-    await ClientCtrl.client().disconnect()
-  }
-
   private onCloseModal(event: PointerEvent) {
     if (event.target === event.currentTarget) {
       this.open = false
