@@ -124,12 +124,14 @@ export interface Wallet {
   name: string
   id?: string
   image?: string
+  url?: string
   links?: {
     native?: string
     universal?: string
   }
   isMobile?: boolean
   isInjected?: boolean
+  injectedId?: string
 }
 // -- OptionsCtrl --------------------------------------- //
 export interface OptionsCtrlState {
