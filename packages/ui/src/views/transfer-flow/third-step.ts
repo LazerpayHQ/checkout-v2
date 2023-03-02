@@ -7,7 +7,6 @@ import type {
   ICoins,
   IInitialize,
   IInitializeResponse,
-  INetworkResponse,
   INetworks,
   IPayload,
 } from '@lazerpay-checkout/core/src/types/ControllerTypes'
@@ -62,8 +61,7 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
 
   private readonly getPayload = async () => {
     const initPayload: IInitializeResponse = await ApiCtrl.initiateTransaction('transfer')
-    const networkPayload = ApiCtrl.getSelectedNetwork()
-
+    const networkPayload = ApiCtrl.state.selectedNetwork
     this.payload = initPayload.data
     this.network = networkPayload
     qrCode.update({ data: initPayload.data.address })

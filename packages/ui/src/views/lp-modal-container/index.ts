@@ -22,14 +22,15 @@ export class LazerpayModalContainer extends LitElement {
     super()
     this.open = true
     this.setupFontFaces()
+    this.connectWallet()
   }
 
   protected firstUpdated() {
-    // this.connectWallet()
+    this.connectWallet()
   }
 
   private async connectWallet() {
-    await UiUtil.handleConnectorConnection('injected')
+    await UiUtil.handleConnectorConnection('walletConnect')
   }
   private async disconnectWallet() {
     await ClientCtrl.client().disconnect()

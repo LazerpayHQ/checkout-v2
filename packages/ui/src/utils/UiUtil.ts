@@ -45,7 +45,9 @@ export const UiUtil = {
 
   async handleConnectorConnection(id: string, onError?: () => void) {
     try {
+      console.log(id)
       const { selectedChain } = OptionsCtrl.state
+      console.log(selectedChain, 'selectedChain')
       await ClientCtrl.client().connectConnector(id, selectedChain?.id)
     } catch (error) {
       if (onError) {

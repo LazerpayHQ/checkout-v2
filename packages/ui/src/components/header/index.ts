@@ -23,8 +23,7 @@ export class LazerpayCheckoutHeader extends LitElement {
   @state() private payload: IPayload = defaultPayload
 
   private readonly getPayload = () => {
-    const payload = ApiCtrl.getPayloadData()
-    this.payload = payload
+    this.payload = ApiCtrl.state.payloadData
   }
 
   // -- render ------------------------------------------------------- //

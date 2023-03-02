@@ -92,33 +92,6 @@ export const ApiCtrl = {
   },
 
   /**
-   * @dev Interacts with the state to get the payload data
-   * @returns The payload data
-   * @example const record = await ApiCtrl.getPayloadData();
-   */
-  getPayloadData() {
-    return state.payloadData
-  },
-
-  /**
-   * @dev Interacts with the state to get the selected coin
-   * @returns The selected coin data
-   * @example const record = await ApiCtrl.getSelectedCoin();
-   */
-  getSelectedCoin() {
-    return state.selectedCoin
-  },
-
-  /**
-   * @dev Interacts with the state to get the selected network
-   * @returns The selected network data
-   * @example const record = await ApiCtrl.getSelectedNetwork();
-   */
-  getSelectedNetwork() {
-    return state.selectedNetwork
-  },
-
-  /**
    * @dev Interacts with the server to initiate a transaction
    * @param paymentChannel The payment channel to use
    * @returns The server response
