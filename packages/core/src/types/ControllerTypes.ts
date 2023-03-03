@@ -123,7 +123,7 @@ export interface WalletCtrlState {
 export interface Wallet {
   name: string
   id?: string
-  image?: string
+  imageId?: string
   url?: string
   links?: {
     native?: string
