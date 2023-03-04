@@ -20,7 +20,7 @@ export const WalletConnectCtrl = {
 
     const wallets = []
 
-    for (const [key, value] of Object.entries(listings)) {
+    for (const [, value] of Object.entries(listings)) {
       wallets.push({
         id: value.id,
         name: value.name,
