@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import { proxy } from 'valtio/vanilla'
-import type { ApiCtrlState, ICoins, IInitializePayload, INetworks, IPayload } from '../types/ControllerTypes'
+import type { ApiCtrlState, ICoins, INetworks, IPayload, IPusherEvent } from '../types/ControllerTypes'
 import { defaultCoin, defaultNetwork, defaultPayload } from '../types/defaultValues'
 
 // -- initial state ------------------------------------------------ //
@@ -14,13 +15,13 @@ const state = proxy<ApiCtrlState>({
   networks: [],
   selectedCoin: defaultCoin,
   selectedNetwork: defaultNetwork,
+  successfulPayment: false,
 })
 
 const API_URL = 'https://dev-api.lazerpay.engineering/api/v2'
-
+let pusher: { subscribe: (arg0: string) => any }
 // Load pusher
 // eslint-disable-next-line @typescript-eslint/init-declarations
-let pusher: { subscribe: (arg0: string) => any }
 const pusherSrc = 'https://js.pusher.com/7.0.3/pusher.min.js'
 const pusherScript = document.createElement('script')
 pusherScript.src = pusherSrc
@@ -83,8 +84,8 @@ export const ApiCtrl = {
    * @returns The server response
    * @example const record = await ApiCtrl.getCoins('ETH');
    */
-  async getCoins(blockchain: string) {
-    const urlParams = new URLSearchParams({ blockchain }).toString()
+  async getCoins(blockchain?: string) {
+    const urlParams = blockchain && new URLSearchParams({ blockchain }).toString()
     const url = `${API_URL}/coins?${urlParams}`
     const fetched = await fetch(url, {
       method: 'GET',
@@ -146,20 +147,17 @@ export const ApiCtrl = {
     return fetched.json()
   },
 
-  async subscribeToPusherEvent(address: string) {
-    const channel = await pusher.subscribe('DEPOSIT_EVENT')
-    await channel.bind(`${address}`, async (data: any) => {
-      console.log(':::::Pusher Event:::::', data)
-      const response = await this.verifyPayment(address)
+  subscribeToPusherEvent(address: string) {
+    const channel = pusher.subscribe('DEPOSIT_EVENT')
 
-      return response
+    channel.bind(address, (data: IPusherEvent) => {
+      console.log(':::::Pusher Event:::::', data)
+      this.verifyPayment(data.address)
     })
   },
 
   async verifyPayment(address: string) {
-    // Logic for confirming payment
-    const urlParams = new URLSearchParams(address).toString()
-    const url = `${API_URL}/transaction/verify${urlParams}`
+    const url = `${API_URL}/transaction/verify/${address}`
     const fetched = await fetch(url, {
       method: 'GET',
       headers: {
@@ -167,6 +165,7 @@ export const ApiCtrl = {
         'x-api-key': state.apiKey,
       },
     })
+    state.successfulPayment = true
 
     return fetched.json()
   },
@@ -175,7 +174,7 @@ export const ApiCtrl = {
     state.payloadData = payload
   },
   getCurrency() {
-    if (state.payloadData?.currency) {
+    if (state.payloadData.currency) {
       return {
         NGN: '₦',
         ngn: '₦',

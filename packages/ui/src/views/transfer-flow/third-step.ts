@@ -68,6 +68,7 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
   private readonly getPayload = async () => {
     const initPayload: IInitializeResponse = await ApiCtrl.initiateTransaction('transfer')
     const networkPayload = ApiCtrl.state.selectedNetwork
+    ApiCtrl.state.initializePayload = initPayload.data
     this.payload = initPayload.data
     this.network = networkPayload
     qrCode.update({ data: initPayload.data.address })
@@ -85,13 +86,8 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
     }
   }
 
-  private readonly subscribeToEvent = async () => {
-    if (this.payload.address) {
-      console.log('we are subscribing to pusher event', this.payload.address)
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-      await ApiCtrl.subscribeToPusherEvent(this.payload.address)
-      // console.log('response from pusher', response)
-    }
+  private readonly subscribeToEvent = () => {
+    ApiCtrl.subscribeToPusherEvent(this.payload.address)
   }
 
   // -- render ------------------------------------------------------- //

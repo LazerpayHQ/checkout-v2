@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { WalletConnectCtrl } from '@lazerpay-checkout/core'
+import type { Wallet } from '@lazerpay-checkout/core/src/types/ControllerTypes'
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import styles from './style.css'
 
 const items = [
@@ -25,8 +28,19 @@ const items = [
 export class LazerpayCheckoutWalletFirstStep extends LitElement {
   public static styles = [styles]
 
+  protected firstUpdated() {
+    this.getWallets()
+  }
+
   // -- state & properties ------------------------------------------- //
   @property() public next: (breadcrumb: string) => void = () => {}
+  @state() public wallets: Wallet[] = []
+
+  private async getWallets() {
+    const response = await WalletConnectCtrl.getRecomendedWallets()
+    console.log(response)
+    this.wallets = response
+  }
 
   // -- render ------------------------------------------------------- //
   protected render() {
@@ -35,13 +49,13 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
         <div class="lp-transfer__header center">Search for your wallet</div>
         <lz-input placeholder="Search"></lz-input>
         <div class="lp-transfer__box-wrapper">
-          ${items.map(
+          ${this.wallets.map(
             (item) =>
               html`
                 <lp-checkout-box
-                  .icon=${item.icon}
-                  .title=${item.title}
-                  @click=${() => this.next(item.title)}
+                  .imageUrl=${item.imageUrl}
+                  .title=${item.name}
+                  @click=${() => this.next(item.name)}
                 ></lp-checkout-box>
               `
           )}

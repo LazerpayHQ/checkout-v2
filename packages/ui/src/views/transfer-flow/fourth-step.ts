@@ -1,3 +1,4 @@
+import { ApiCtrl } from '@lazerpay-checkout/core'
 import { html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
@@ -11,13 +12,16 @@ export class LazerpayCheckoutTransferFourthStep extends LitElement {
 
   // -- lifecycle ---------------------------------------------------- //
   protected firstUpdated() {
-    this.handleNext()
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+    this.listenToStateChange()
   }
 
-  private handleNext = () => {
-    setTimeout(() => {
-      this.next()
-    }, 3000)
+  private listenToStateChange() {
+    setInterval(() => {
+      if (ApiCtrl.state.successfulPayment) {
+        this.next()
+      }
+    }, 2000)
   }
 
   // -- render ------------------------------------------------------- //

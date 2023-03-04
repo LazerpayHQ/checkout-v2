@@ -111,6 +111,7 @@ export interface ApiCtrlState {
   networks: INetworks[]
   selectedCoin: ICoins
   selectedNetwork: INetworks
+  successfulPayment: boolean
 }
 
 export interface WalletCtrlState {
@@ -123,7 +124,7 @@ export interface WalletCtrlState {
 export interface Wallet {
   name: string
   id?: string
-  imageId?: string
+  imageUrl?: string
   url?: string
   links?: {
     native?: string
@@ -213,4 +214,12 @@ export interface IInitialize {
   id: string
   network: string
   reference: string
+}
+
+export interface IPusherEvent {
+  address: string
+  amount: string
+  coin: string
+  message: string
+  status: string
 }
