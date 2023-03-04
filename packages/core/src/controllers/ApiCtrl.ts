@@ -18,6 +18,32 @@ const state = proxy<ApiCtrlState>({
 
 const API_URL = 'https://dev-api.lazerpay.engineering/api/v2'
 
+// Load pusher
+// eslint-disable-next-line @typescript-eslint/init-declarations
+let pusher: { subscribe: (arg0: string) => any }
+const pusherSrc = 'https://js.pusher.com/7.0.3/pusher.min.js'
+const pusherScript = document.createElement('script')
+pusherScript.src = pusherSrc
+pusherScript.title = '__LazerpayScript__'
+pusherScript.async = true
+
+// eslint-disable-next-line func-style
+const onPusherScriptLoad = () => {
+  pusher = new Pusher('be52401726705f906656', {
+    cluster: 'ap2',
+  })
+}
+
+// eslint-disable-next-line func-style
+const onPusherScriptError = () => {
+  console.log('::::Error connecting Pusher::::')
+}
+
+pusherScript.addEventListener('load', onPusherScriptLoad)
+pusherScript.addEventListener('complete', onPusherScriptLoad)
+pusherScript.addEventListener('error', onPusherScriptError)
+document.body.appendChild(pusherScript)
+
 // -- controller -- As function to enable correct ssr handling
 export const ApiCtrl = {
   state,
@@ -106,7 +132,7 @@ export const ApiCtrl = {
       },
       body: JSON.stringify({
         coin: state.selectedCoin.symbol,
-        blockchain: state.selectedNetwork.name.split(' ').join('_'),
+        blockchain: state.selectedNetwork.id,
         apiKey: '',
         customer_name: state.payloadData.customerName,
         customer_email: state.payloadData.customerEmail,
@@ -119,9 +145,20 @@ export const ApiCtrl = {
 
     return fetched.json()
   },
-  async verifyPayment() {
+
+  async subscribeToPusherEvent(address: string) {
+    const channel = await pusher.subscribe('DEPOSIT_EVENT')
+    await channel.bind(`${address}`, async (data: any) => {
+      console.log(':::::Pusher Event:::::', data)
+      const response = await this.verifyPayment(address)
+
+      return response
+    })
+  },
+
+  async verifyPayment(address: string) {
     // Logic for confirming payment
-    const urlParams = new URLSearchParams(state.initializePayload?.address).toString()
+    const urlParams = new URLSearchParams(address).toString()
     const url = `${API_URL}/transaction/verify${urlParams}`
     const fetched = await fetch(url, {
       method: 'GET',

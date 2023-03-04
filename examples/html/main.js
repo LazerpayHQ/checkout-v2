@@ -6,7 +6,7 @@ const data = {
   apiKey: 'pk_live_NUulPuy1UjqQOD6O6XnEi17S9QhLCfSjalIZQnvJlmGjVvBDgY',
   customerEmail: 'jsj@gmail.com',
   customerName: 'Justice',
-  amount: '2000',
+  amount: '0.1',
   reference: 'string',
   metadata: {},
   acceptPartialPayment: false,

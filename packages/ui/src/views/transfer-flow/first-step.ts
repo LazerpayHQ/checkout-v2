@@ -15,7 +15,7 @@ export class LazerpayCheckoutTransferFirstStep extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() public coins: ICoins[] = []
-  @property() public next: (item?: object) => void = () => {}
+  @property() public next: (breadcrumb: string, item?: object) => void = () => {}
 
   private readonly getCoins = async () => {
     const response: ICoinResponse = await ApiCtrl.getCoins('binance_smart_chain')
@@ -36,7 +36,7 @@ export class LazerpayCheckoutTransferFirstStep extends LitElement {
             (item) =>
               html`
                 <lp-checkout-box
-                  @click=${() => this.next(item)}
+                  @click=${() => this.next(item.symbol, item)}
                   .icon=${item.symbol}
                   .title=${item.name}
                 ></lp-checkout-box>

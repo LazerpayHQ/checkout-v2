@@ -26,16 +26,25 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @property() public next: () => void = () => {}
+  @property() public next: (breadcrumb: string) => void = () => {}
 
   // -- render ------------------------------------------------------- //
   protected render() {
     return html`
       <div>
         <div class="lp-transfer__header center">Search for your wallet</div>
-        <lz-input placeholder='Search'></lz-input>
+        <lz-input placeholder="Search"></lz-input>
         <div class="lp-transfer__box-wrapper">
-          ${items.map((item) => html` <lp-checkout-box .icon=${item.icon} .title=${item.title} @click=${this.next}></lp-checkout-box> `)}
+          ${items.map(
+            (item) =>
+              html`
+                <lp-checkout-box
+                  .icon=${item.icon}
+                  .title=${item.title}
+                  @click=${() => this.next(item.title)}
+                ></lp-checkout-box>
+              `
+          )}
         </div>
       </div>
     `

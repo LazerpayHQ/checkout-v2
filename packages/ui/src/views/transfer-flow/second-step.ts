@@ -31,7 +31,7 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
   }
 
   // -- state & properties ------------------------------------------- //
-  @property() public next: (item?: object) => void = () => {}
+  @property() public next: (breadcrumb: string, item?: object) => void = () => {}
   @state() private modalOpen = false
   @state() public networks: INetworks[] = []
 
@@ -72,7 +72,7 @@ export class LazerpayCheckoutTransferSecondStep extends LitElement {
               (item) =>
                 html`
                   <lp-checkout-box
-                    @click=${() => this.next(item)}
+                    @click=${() => this.next(items(item.symbol), item)}
                     .description=${'Estimated confirmation time = 5 mins'}
                     .icon=${item.symbol}
                     .title=${items(item.symbol)}

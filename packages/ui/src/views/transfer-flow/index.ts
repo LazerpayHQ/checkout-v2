@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import { html, LitElement } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 
 import styles from './style.css'
 import './first-step'
@@ -20,17 +20,16 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
   }
 
   // -- state & properties ------------------------------------------- //
-  @state() public step = 1
+  @property() public step = 1
 
-  public next = (data?: any) => {
+  public next = (breadcrumb: string, data: any) => {
     if (this.step === 1) {
       ApiCtrl.setCoin(data)
     }
     if (this.step === 2) {
       ApiCtrl.setNetwork(data)
     }
-    this.step += 1
-    this.nextHeader()
+    this.nextHeader(breadcrumb)
   }
 
   // -- render ------------------------------------------------------- //
@@ -46,11 +45,12 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `
   }
 
-  private nextHeader() {
+  private nextHeader(breadcrumb: string) {
     this.dispatchEvent(
       new CustomEvent('nextHeader', {
         bubbles: true,
         composed: true,
+        detail: breadcrumb,
       })
     )
   }

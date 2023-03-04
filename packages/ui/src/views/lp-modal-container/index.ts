@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { html, LitElement } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
@@ -16,6 +17,7 @@ export class LazerpayModalContainer extends LitElement {
   @state() public activeTab = 0
   @state() private confirmModalOpen = false
   @state() public activeHeaderStep = 1
+  @state() public breadcrumbs: string[] = []
 
   // -- lifecycle ------------------------------------------- //
   public constructor() {
@@ -36,8 +38,42 @@ export class LazerpayModalContainer extends LitElement {
     this.confirmModalOpen = !this.confirmModalOpen
   }
 
-  private nextStep() {
+  private nextStep(breadcrumb: any) {
+    const title = breadcrumb?.detail
     this.activeHeaderStep += 1
+    let crumbs = [...this.breadcrumbs]
+
+    if (this.activeHeaderStep === 2) {
+      crumbs.push(title)
+      crumbs.push('Network')
+    } else if (this.activeHeaderStep === 3) {
+      crumbs[1] = title
+      if (this.activeTab === 0) {
+        crumbs.push('Send Funds')
+      } else {
+        crumbs.push('Token')
+      }
+    } else {
+      crumbs = []
+    }
+
+    this.breadcrumbs = crumbs
+  }
+
+  private prevStep() {
+    this.activeHeaderStep -= 1
+    let crumbs = [...this.breadcrumbs]
+
+    if (this.activeHeaderStep === 2) {
+      crumbs.pop()
+      crumbs[1] = 'Network'
+    } else if (this.activeHeaderStep === 1) {
+      crumbs = []
+    } else {
+      crumbs = []
+    }
+
+    this.breadcrumbs = crumbs
   }
 
   /** Load styles */
@@ -72,13 +108,20 @@ export class LazerpayModalContainer extends LitElement {
         ></lp-checkout-modal>
 
         <div class="lp-modal">
-          <div @click=${this.confirmCloseModal} class="lp-modal__close">${SvgIcons('CANCEL_ICON')}</div>
+          <div @click=${this.onCloseModal} class="lp-modal__close">${SvgIcons('CANCEL_ICON')}</div>
           <div class="lp-container">
             <lp-checkout-sidebar .activeTab=${this.activeTab} @tab-changed=${this.swithTab}> </lp-checkout-sidebar>
             <div>
               <lp-checkout-header .activeTab=${this.activeTab} .activeHeaderStep=${this.activeHeaderStep}>
               </lp-checkout-header>
-              <lp-checkout-content @nextStep=${this.nextStep} .activeTab=${this.activeTab}> </lp-checkout-content>
+              <lp-checkout-content
+                @nextStep=${this.nextStep}
+                @prevStep=${this.prevStep}
+                .breadcrumbs=${this.breadcrumbs}
+                .activeTab=${this.activeTab}
+                .activeHeaderStep=${this.activeHeaderStep}
+              >
+              </lp-checkout-content>
             </div>
           </div>
         </div>
@@ -88,6 +131,7 @@ export class LazerpayModalContainer extends LitElement {
 
   public swithTab(e: CustomEvent) {
     this.activeTab = e.detail.tab
+    this.activeHeaderStep = 1
   }
 }
 

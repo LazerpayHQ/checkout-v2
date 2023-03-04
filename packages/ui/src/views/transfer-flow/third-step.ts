@@ -53,8 +53,14 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
     this.getPayload()
   }
 
+  protected updated(changedProperties: Map<number | string | symbol, unknown>) {
+    if (changedProperties.has('payload')) {
+      this.subscribeToEvent()
+    }
+  }
+
   // -- state & properties ------------------------------------------- //
-  @property() public next: () => void = () => {}
+  @property() public next: (breadcrumb: string, item?: object) => void = () => {}
   @state() private payload: IInitialize = defaultInitResponse
   @state() private network: INetworks = defaultNetwork
   @state() private copied = false
@@ -76,6 +82,15 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
       }, 2000)
     } catch (err) {
       console.error('Failed to copy: ', err)
+    }
+  }
+
+  private readonly subscribeToEvent = async () => {
+    if (this.payload.address) {
+      console.log('we are subscribing to pusher event', this.payload.address)
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      await ApiCtrl.subscribeToPusherEvent(this.payload.address)
+      // console.log('response from pusher', response)
     }
   }
 
@@ -125,7 +140,7 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
             </div>
           </div>
           <div class="lp-transfer__btn-wrapper">
-            <lp-checkout-button title="I’ve made payment" @click=${this.next} action=${this.next}></lp-checkout-button>
+            <lp-checkout-button title="I’ve made payment" @action=${() => this.next('Send Funds')}></lp-checkout-button>
           </div>
         </div>
       </div>

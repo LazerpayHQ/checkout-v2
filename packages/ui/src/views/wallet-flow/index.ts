@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import styles from './style.css'
 import './first-step'
 import './second-step'
@@ -13,11 +13,10 @@ export class LazerpayCheckoutWalletFlow extends LitElement {
   public static styles = [styles]
 
   // -- state & properties ------------------------------------------- //
-  @state() public step = 1
+  @property() public step = 1
 
-  public next = () => {
-    this.step += 1
-    this.nextHeader()
+  public next = (breadcrumb: string) => {
+    this.nextHeader(breadcrumb)
   }
 
   protected render() {
@@ -34,11 +33,12 @@ export class LazerpayCheckoutWalletFlow extends LitElement {
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `
   }
 
-  private nextHeader() {
+  private nextHeader(breadcrumb: string) {
     this.dispatchEvent(
       new CustomEvent('nextHeader', {
         bubbles: true,
         composed: true,
+        detail: breadcrumb,
       })
     )
   }
