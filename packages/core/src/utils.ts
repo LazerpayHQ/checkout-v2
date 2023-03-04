@@ -7,6 +7,21 @@ export const CoreUtil = {
     return url.startsWith('http://') || url.startsWith('https://')
   },
 
+  isMobile() {
+    if (typeof window !== 'undefined') {
+      return Boolean(
+        window.matchMedia('(pointer:coarse)').matches ||
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/u.test(navigator.userAgent)
+      )
+    }
+
+    return false
+  },
+
+  isAndroid() {
+    return CoreUtil.isMobile() && navigator.userAgent.toLowerCase().includes('android')
+  },
+
   formatNativeUrl(appUrl: string, wcUri: string, name: string): string {
     if (CoreUtil.isHttpUrl(appUrl)) {
       return this.formatUniversalUrl(appUrl, wcUri, name)
