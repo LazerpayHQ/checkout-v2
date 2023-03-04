@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { LitElement } from 'lit'
 import type { Wallet } from './TypesUtil'
-import { ClientCtrl, ConfigCtrl, CoreUtil, OptionsCtrl } from '@lazerpay-checkout/core'
+import { ClientCtrl, WalletConnectCtrl, CoreUtil, OptionsCtrl } from '@lazerpay-checkout/core'
 
 export const UiUtil = {
   LP_RECENT_WALLET: 'LP_RECENT_WALLET',
 
   async handleMobileLinking(wallet: Wallet) {
-    const { standaloneUri, selectedChain } = OptionsCtrl.state
+    const { selectedChain } = WalletConnectCtrl.state
     const { links, name } = wallet
 
     function onRedirect(uri: string) {
@@ -20,13 +20,10 @@ export const UiUtil = {
       CoreUtil.openHref(href)
     }
 
-    if (standaloneUri) {
-      onRedirect(standaloneUri)
-    } else {
-      await ClientCtrl.client().connectWalletConnect((uri) => {
-        onRedirect(uri)
-      }, selectedChain?.id)
-    }
+    await ClientCtrl.client().connectWalletConnect((uri) => {
+      onRedirect(uri)
+    }, selectedChain)
+
     UiUtil.setRecentWallet(wallet)
   },
 
