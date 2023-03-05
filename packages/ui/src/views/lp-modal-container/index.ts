@@ -30,8 +30,7 @@ export class LazerpayModalContainer extends LitElement {
   }
 
   private async getWallets() {
-    const response = await WalletConnectCtrl.getRecomendedWallets()
-    console.log(response)
+    await WalletConnectCtrl.getRecomendedWallets()
   }
 
   private onCloseModal(event: PointerEvent) {

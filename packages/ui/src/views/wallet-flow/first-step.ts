@@ -33,7 +33,7 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
   }
 
   private async searchWallets() {
-    const data = { search: this.value, page: 1, entries: 10 }
+    const data = { search: this.value, page: 1, entries: 7 }
     const resp = await WalletConnectCtrl.getPaginatedWallets(data)
     const newArr = [...resp]
 
