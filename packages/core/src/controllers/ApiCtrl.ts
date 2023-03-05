@@ -3,19 +3,18 @@
 /* eslint-disable no-console */
 import { proxy } from 'valtio/vanilla'
 import type { ApiCtrlState, ICoins, INetworks, IPayload, IPusherEvent } from '../types/ControllerTypes'
-import { defaultCoin, defaultNetwork, defaultPayload } from '../types/defaultValues'
+import { defaultCoin, defaultNetwork, defaultPayload, defaultResponsePayload } from '../types/defaultValues'
 
 // -- initial state ------------------------------------------------ //
 const state = proxy<ApiCtrlState>({
   isTestnet: false,
   apiKey: '',
   payloadData: defaultPayload,
-  initializePayload: undefined,
+  initializePayload: defaultResponsePayload,
   coins: [],
   networks: [],
   selectedCoin: defaultCoin,
   selectedNetwork: defaultNetwork,
-  successfulPayment: false,
 })
 
 const API_URL = 'https://dev-api.lazerpay.engineering/api/v2'
@@ -165,7 +164,9 @@ export const ApiCtrl = {
         'x-api-key': state.apiKey,
       },
     })
-    state.successfulPayment = true
+    const { data } = await fetched.json()
+
+    state.initializePayload = data
 
     return fetched.json()
   },

@@ -1,3 +1,5 @@
+import { TransactionStatusEnum } from './ControllerTypes'
+
 export const defaultPayload = {
   customerEmail: '',
   customerName: '',
@@ -54,4 +56,31 @@ export const defaultInitResponse = {
   id: '',
   network: '',
   reference: '',
+}
+
+export const defaultResponsePayload = {
+  id: '',
+  reference: '',
+  senderAddress: '',
+  recipientAddress: '',
+  actualAmount: 0,
+  amountPaid: 0,
+  amountPaidFiat: 0,
+  fiatAmount: 0,
+  amountReceived: 0,
+  amountReceivedFiat: 0,
+  coin: '',
+  currency: '',
+  hash: '',
+  blockNumber: '',
+  type: '',
+  acceptPartialPayment: false,
+  status: TransactionStatusEnum.EMPTY,
+  paymentType: '',
+  network: '',
+  paymentChannel: '',
+  blockchain: '',
+  fiatRate: 0,
+  cryptoRate: 0,
+  feeInCrypto: 0,
 }

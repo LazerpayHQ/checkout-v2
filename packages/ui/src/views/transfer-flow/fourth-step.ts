@@ -1,6 +1,6 @@
 import { ApiCtrl } from '@lazerpay-checkout/core'
 import { html, LitElement } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import styles from './style.css'
 
 @customElement('lp-checkout-transfer-fourth-step')
@@ -9,6 +9,7 @@ export class LazerpayCheckoutTransferFourthStep extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @property() public next: () => void = () => {}
+  @state() public done = false
 
   // -- lifecycle ---------------------------------------------------- //
   protected firstUpdated() {
@@ -18,8 +19,11 @@ export class LazerpayCheckoutTransferFourthStep extends LitElement {
 
   private listenToStateChange() {
     setInterval(() => {
-      if (ApiCtrl.state.successfulPayment) {
-        this.next()
+      if (ApiCtrl.state.initializePayload.id.length > 0) {
+        if (!this.done) {
+          this.done = true
+          this.next()
+        }
       }
     }, 2000)
   }

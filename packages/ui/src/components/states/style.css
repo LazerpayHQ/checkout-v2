@@ -107,3 +107,29 @@
   color: #125bc9;
   text-decoration: underline;
 }
+
+.lp-checkout__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 330px;
+  width: 100%;
+}
+
+.lp-checkout__hide {
+  display: none;
+}
+
+.lp-checkout__display {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/* incomplete,
+confirmed,
+pending,
+rejected,
+failed */

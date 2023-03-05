@@ -39,7 +39,7 @@ export class LazerpayCheckoutTransferFlow extends LitElement {
       html`<lp-checkout-transfer-second-step .next=${this.next}></lp-checkout-transfer-second-step>`,
       html`<lp-checkout-transfer-third-step .next=${this.next}></lp-checkout-transfer-third-step>`,
       html`<lp-checkout-transfer-fourth-step .next=${this.next}></lp-checkout-transfer-fourth-step>`,
-      html`<lp-checkout-states .status=${'success'}></lp-checkout-states>`,
+      html`<lp-checkout-states></lp-checkout-states>`,
     ]
 
     return html` <div class="lp-transfer">${components[this.step - 1]}</div> `

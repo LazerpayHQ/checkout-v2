@@ -89,6 +89,45 @@ export interface IInitializePayload {
   blockchain: string
 }
 
+export enum TransactionStatusEnum {
+  PENDING = 'pending',
+  CONFIRMED = 'confirmed',
+  REJECTED = 'rejected',
+  CANCELLED = 'cancelled',
+  FAILED = 'failed',
+  ABANDONED = 'abandoned',
+  INCOMPLETE = 'incomplete',
+  REVERSED = 'reversed',
+  EMPTY = '',
+}
+
+export interface IInitializeResponsePayload {
+  id: string
+  reference: string
+  senderAddress: string
+  recipientAddress: string
+  actualAmount: number
+  amountPaid: number
+  amountPaidFiat: number
+  fiatAmount: number
+  amountReceived: number
+  amountReceivedFiat: number
+  coin: string
+  currency: string
+  hash: string
+  blockNumber: string
+  type: string
+  acceptPartialPayment: boolean
+  status: TransactionStatusEnum
+  paymentType: string
+  network: string
+  paymentChannel: string
+  blockchain: string
+  fiatRate: number
+  cryptoRate: number
+  feeInCrypto: number
+}
+
 export interface IPayload {
   customerEmail: string
   customerName: string
@@ -105,13 +144,12 @@ export interface IPayload {
 export interface ApiCtrlState {
   isTestnet?: boolean
   apiKey: string
-  initializePayload: IInitializePayload | undefined
+  initializePayload: IInitializeResponsePayload
   payloadData: IPayload
   coins: ICoins[]
   networks: INetworks[]
   selectedCoin: ICoins
   selectedNetwork: INetworks
-  successfulPayment: boolean
 }
 
 export interface WalletCtrlState {
