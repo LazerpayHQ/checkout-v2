@@ -68,7 +68,6 @@ export class LazerpayCheckoutTransferThirdStep extends LitElement {
   private readonly getPayload = async () => {
     const initPayload: IInitializeResponse = await ApiCtrl.initiateTransaction('transfer')
     const networkPayload = ApiCtrl.state.selectedNetwork
-    ApiCtrl.state.initializePayload = initPayload.data
     this.payload = initPayload.data
     this.network = networkPayload
     qrCode.update({ data: initPayload.data.address })

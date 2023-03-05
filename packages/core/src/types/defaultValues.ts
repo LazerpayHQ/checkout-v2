@@ -84,3 +84,17 @@ export const defaultResponsePayload = {
   cryptoRate: 0,
   feeInCrypto: 0,
 }
+
+export const defaultWallet = {
+  name: '',
+  id: '',
+  imageUrl: '',
+  url: '',
+  links: {
+    native: '',
+    universal: '',
+  },
+  isMobile: false,
+  isInjected: false,
+  injectedId: '',
+}

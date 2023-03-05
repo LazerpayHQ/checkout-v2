@@ -5,25 +5,6 @@ import { html, LitElement } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import styles from './style.css'
 
-const items = [
-  {
-    icon: 'METAMASK',
-    title: 'Metamask',
-  },
-  {
-    icon: 'COINBASE',
-    title: 'Coinbase Wallet',
-  },
-  {
-    icon: 'BUSD',
-    title: 'Binance Wallet',
-  },
-  {
-    icon: 'TRUSTWALLET',
-    title: 'Trust Wallet',
-  },
-]
-
 @customElement('lp-checkout-wallet-first-step')
 export class LazerpayCheckoutWalletFirstStep extends LitElement {
   public static styles = [styles]
@@ -32,14 +13,31 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
     this.getWallets()
   }
 
+  protected updated(changedProperties: Map<number | string | symbol, unknown>) {
+    if (changedProperties.has('value')) {
+      this.searchWallets()
+    }
+  }
+
   // -- state & properties ------------------------------------------- //
   @property() public next: (breadcrumb: string) => void = () => {}
-  @state() public wallets: Wallet[] = []
+  @state() private wallets: Wallet[] = []
+  @state() private value = ''
 
   private async getWallets() {
-    const response = await WalletConnectCtrl.getRecomendedWallets()
-    console.log(response)
+    let response: Wallet[] = WalletConnectCtrl.state.recommendedWallets
+    if (response.length === 0) {
+      response = await WalletConnectCtrl.getRecomendedWallets()
+    }
     this.wallets = response
+  }
+
+  private async searchWallets() {
+    const data = { search: this.value, page: 1, entries: 10 }
+    const resp = await WalletConnectCtrl.getPaginatedWallets(data)
+    const newArr = [...resp]
+
+    this.wallets = newArr
   }
 
   // -- render ------------------------------------------------------- //
@@ -47,7 +45,7 @@ export class LazerpayCheckoutWalletFirstStep extends LitElement {
     return html`
       <div>
         <div class="lp-transfer__header center">Search for your wallet</div>
-        <lz-input placeholder="Search"></lz-input>
+        <lz-input .submit=${(value: string) => (this.value = value)} .placeholder="Search"></lz-input>
         <div class="lp-transfer__box-wrapper">
           ${this.wallets.map(
             (item) =>

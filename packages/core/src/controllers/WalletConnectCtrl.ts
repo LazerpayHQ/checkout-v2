@@ -49,6 +49,7 @@ export const WalletConnectCtrl = {
     const { listings } = await CoreUtil.fetchWallets(projectId, params)
 
     const response = refactorResponse(listings)
+    state.recommendedWallets = response
 
     return response
   },

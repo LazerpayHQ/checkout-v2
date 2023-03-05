@@ -5,6 +5,7 @@ import { classMap } from 'lit/directives/class-map.js'
 import styles from './style.css'
 import FONT_FACES from '../../assets/fonts/index'
 import { SvgIcons } from '../../utils/SvgUtil'
+import { WalletConnectCtrl } from '@lazerpay-checkout/core'
 
 @customElement('lp-modal-container')
 export class LazerpayModalContainer extends LitElement {
@@ -12,7 +13,7 @@ export class LazerpayModalContainer extends LitElement {
 
   // -- state & properties ------------------------------------------- //
   @state() private open = false
-  @state() public activeTab = 0
+  @state() public activeTab = 1
   @state() private confirmModalOpen = false
   @state() public activeHeaderStep = 1
   @state() public breadcrumbs: string[] = []
@@ -22,6 +23,15 @@ export class LazerpayModalContainer extends LitElement {
     super()
     this.open = true
     this.setupFontFaces()
+  }
+
+  protected firstUpdated() {
+    this.getWallets()
+  }
+
+  private async getWallets() {
+    const response = await WalletConnectCtrl.getRecomendedWallets()
+    console.log(response)
   }
 
   private onCloseModal(event: PointerEvent) {

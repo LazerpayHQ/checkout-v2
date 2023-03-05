@@ -154,7 +154,7 @@ export interface ApiCtrlState {
 
 export interface WalletCtrlState {
   allWallets?: Wallet[]
-  recommendedWallets?: Wallet[]
+  recommendedWallets: Wallet[]
   selectedWallet?: Wallet
   defaultChain?: number
   selectedChain?: number
